@@ -243,7 +243,12 @@
     width: 5rem;
     height: 6rem;
     object-fit: cover;
+    transition: transform .2s; /* Animation */
 }
+
+.player-photo:hover {
+    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
 
 .player-on-loan {
     position: absolute;
@@ -268,6 +273,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.player-card-name-link {
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+.player-card-name-link:hover {
+    color: #252727;
+    text-decoration-line: underline;
+    transition-duration: 1s;
 }
 
 .name {
