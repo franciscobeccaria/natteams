@@ -1,0 +1,74 @@
+.header {
+    width: 100%;                           /* Layout/header */
+    height: 4rem;                          /* Layout/header */
+    background: #0B192C;                 /* Theme   y   Variables */ 
+    display: flex;                         /* Layout/header */
+    justify-content: space-between;        /* Layout/header */
+    align-items: center;                   /* Layout/header */
+}
+
+/* Esto pertenece al Header */
+.navigation {
+    margin: 0 4rem 0 0;
+}
+
+.logo {
+    margin: 0 0 0 4rem;
+}
+
+.navigation-ul, .item-li, .item, .logo-link, .logo-link-text {
+    list-style: none;
+    text-decoration: none;
+}
+
+.logo-link, .logo-link-text {
+    color: #F9F4F4;
+    font-size: 2rem;
+    font-family: 'Pridi', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 500px) {
+    .logo-link, .logo-link-text {
+        font-size: 1.5rem;
+    }
+}
+
+.item {
+    color: #F9F4F4;
+    font-size: 1rem;
+    font-family: 'Pridi', Arial, Helvetica, sans-serif;
+}
+
+.item:hover {
+    color: #00BCD4;
+    text-decoration-line: underline;
+    transition-duration: 1s;
+}
+
+.navigation-ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-li {
+    margin: 0 1rem;
+}
+
+.navigation-to-mobile {
+    display: none;
+    height: 1.8rem;
+    width: 1.8rem;
+    background: red;
+    margin: 0 1rem 0 0;
+}
+
+@media screen and (max-width: 700px) {
+    .navigation-to-mobile {
+        display: flex;
+    }
+    .navigation {
+        display: none;
+    }
+}

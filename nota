@@ -1,0 +1,21 @@
+Recordar al final:
+-Fuentes
+-Colores
+-Pulir el tema de Media Queries. 
+-Repasar todo lo que hizo con Sass en curso de Sass y RWD.
+
+DUDA TERMINADA.
+Estoy dudando:
+-Donde poner los botones de _section-title?
+--Los dejo dentro de _section-title.scss?
+--Creo un _button-section-title.scss?
+--Creo una carpeta section-title, y dentro meto _section-title.scss y _button-section-title.scss?
+-RESOLUCIÓN:
+--Para mi dejo _section-title.scss y listo. Mi razonamiento fue que si separo esos botones también debería separar ARQUEROS, Prestado, etc.
+---O sea, si los botones también estaría por fuera de _section-title.scss, en ese caso sí habría que hacer otro archivo.
+---De todas formas, igual me hace un poco de ruido, porque son botones y justo los botones siempre los ponen de ejemplo para components.
+-REALIDAD:
+--Debería entonces hacer lo mismo con _player-card.scss, o sea debería dejarlo dentro de _section-players.scss?
+---Para mi la respuesta es no. Son diferentes.
+-LA REALIDAD es que podría o no crear los botones, no es que está bien o está mal crearlos o no, estan las 2 posibilidades. 
+-Veremos como se termina la página y quizas sea mejor crear nuevos archivos. 
