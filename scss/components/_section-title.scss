@@ -1,7 +1,7 @@
 .section-title {
     width: 100%;
     height: 2rem;
-    background: #00BCD4;
+    background: $section-title-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,7 +46,7 @@
     align-items: center;
     justify-content: center;
     border-radius: .2rem;
-    background: #F7FC00;
+    background: $button-color;
 }
 
 .add-section-icon-container, .add-player-icon-container {
@@ -63,7 +63,7 @@
 }
 
 .add-section-to-mobile:hover, .add-player-to-mobile:hover {
-    background: #F9F4F4;
+    background: $button-hover-color;
 }
 
 .add-section-to-mobile {
@@ -78,17 +78,17 @@
 .add-section, .add-player {
     height: 1.6rem;
     width: 8rem;
-    background: #F7FC00;
+    background: $button-color;
     font-weight: 700;
-    font-family: 'Pridi', Arial, Helvetica, sans-serif;
+    font-family: $pridi-family;
     border-radius: .5rem;
     border: .0rem solid black;
     font-size: .9rem;
 }
 
 .add-section:hover, .add-player:hover{
-    border: .1rem solid black;
-    background: #F9F4F4;
+    border: .1rem solid $button-border-color;
+    background: $button-hover-color;
 }
 
 .add-section {
@@ -101,7 +101,7 @@
 }
 
 .on-loan {
-    background: #F9F4F4;
+    background: $on-loan-color;
     height: 1.4rem;
     width: 5rem;
     display: flex;
@@ -111,7 +111,7 @@
 }
 
 .on-loan-p {
-    font-family: 'Pridi', Arial, Helvetica, sans-serif;
+    font-family: $pridi-family;
     font-size: .7rem;
 }
 

@@ -1,7 +1,7 @@
 .header {
     width: 100%;                           /* Layout/header */
     height: 4rem;                          /* Layout/header */
-    background: #0B192C;                 /* Theme   y   Variables */ 
+    background: $header-color;                 /* Theme   y   Variables */ 
     display: flex;                         /* Layout/header */
     justify-content: space-between;        /* Layout/header */
     align-items: center;                   /* Layout/header */
@@ -10,6 +10,10 @@
 /* Esto pertenece al Header */
 .navigation {
     margin: 0 4rem 0 0;
+
+    @include mq(700) {
+        display: none;
+    }
 }
 
 .logo {
@@ -22,26 +26,24 @@
 }
 
 .logo-link, .logo-link-text {
-    color: #F9F4F4;
+    color: $header-text-color;
     font-size: 2rem;
-    font-family: 'Pridi', Arial, Helvetica, sans-serif;
+    font-family: $pridi-family;
     font-weight: 700;
-}
 
-@media screen and (max-width: 500px) {
-    .logo-link, .logo-link-text {
+    @include mq(500) {
         font-size: 1.5rem;
     }
 }
 
 .item {
-    color: #F9F4F4;
+    color: $header-text-color;
     font-size: 1rem;
-    font-family: 'Pridi', Arial, Helvetica, sans-serif;
+    font-family: $pridi-family;
 }
 
 .item:hover {
-    color: #00BCD4;
+    color: $header-text-hover-color;
     text-decoration-line: underline;
     transition-duration: 1s;
 }
@@ -62,13 +64,9 @@
     width: 1.8rem;
     background: red;
     margin: 0 1rem 0 0;
-}
 
-@media screen and (max-width: 700px) {
-    .navigation-to-mobile {
+    @include mq(700) {
         display: flex;
     }
-    .navigation {
-        display: none;
-    }
 }
+

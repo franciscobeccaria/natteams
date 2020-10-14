@@ -1,0 +1,48 @@
+// Paleta de colores:
+:root {
+    --color-first  : #007BDF;
+    --color-border : #DFE0E0;
+    --color-alert  : #FF3C32;
+  }
+
+    $border-color : #CCC;
+    $text-color : #53575A;
+    $dark-color : #141618;
+    // Header colors
+    $header-color:                      #0B192C;
+    $header-text-color:                 #F9F4F4;
+    $header-text-hover-color:           #00BCD4;
+    // Section-title colors
+    $section-title-color:               #00BCD4;
+    $button-color:                      #F7FC00;
+    $button-hover-color:                #F9F4F4;
+    $button-border-color:               black;
+    $on-loan-color:                     #F9F4F4;
+    // Section-players colors
+    $section-players-color:             #042240;
+    // Player-card colors
+    $player-card-color:                 #F9F4F4;
+    $player-card-name-color:            black;
+    $player-card-name-hover-color:      #252727;
+    $player-card-info-inside-color:     white;
+    $player-card-info-inside-border:    black;
+
+// Variables de apilamiento (z-index)
+  :root {
+    --z-back    : -10;
+    --z-normal  : 1;
+    --z-tooltip : 10;
+    --z-fixed   : 100;
+    --z-modal   : 1000;
+  }
+
+// Fuentes
+    $roboto-family: 'Roboto', Arial, Helvetica, sans-serif;
+    $pridi-family: 'Pridi', Arial, Helvetica, sans-serif;
+
+// Breakpoints
+$breakpoints :(
+    500: 500px,
+    700: 700px,
+    900: 900px
+);

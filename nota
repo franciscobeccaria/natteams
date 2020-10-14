@@ -1,8 +1,8 @@
 Recordar al final:
--Fuentes
--Colores
--Pulir el tema de Media Queries. 
--Repasar todo lo que hizo con Sass en curso de Sass y RWD.
+-Fuentes    LISTO
+-Colores    LISTO
+-Pulir el tema de Media Queries.    TODAVIA NO LO HICE
+-Repasar todo lo que hizo con Sass en curso de Sass y RWD.  TODAVIA NO LO HICE
 
 DUDA TERMINADA.
 Estoy dudando:
@@ -19,3 +19,8 @@ Estoy dudando:
 ---Para mi la respuesta es no. Son diferentes.
 -LA REALIDAD es que podría o no crear los botones, no es que está bien o está mal crearlos o no, estan las 2 posibilidades. 
 -Veremos como se termina la página y quizas sea mejor crear nuevos archivos. 
+
+Media queries:
+-500
+-700
+-900

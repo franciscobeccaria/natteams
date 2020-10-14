@@ -1,7 +1,7 @@
 .player-card {
     height: 8rem;
     width: 7.5rem;
-    background: #F9F4F4;
+    background: $player-card-color;
     margin: .6rem .8rem;
     border-radius: .2rem;
 }
@@ -49,8 +49,8 @@
 }
 
 .main-position-description, .born-year-description, .age-description, .valored-description {
-    -webkit-text-stroke: 0.5px black;
-    color: white;
+    -webkit-text-stroke: 0.5px $player-card-info-inside-border;
+    color: $player-card-info-inside-color;
     font-size: 0.7rem;
     text-align: center;
 }
@@ -132,11 +132,11 @@
 .player-card-name-link {
     list-style: none;
     text-decoration: none;
-    color: black;
+    color: $player-card-name-color;
 }
 
 .player-card-name-link:hover {
-    color: #252727;
+    color: $player-card-name-hover-color;
     text-decoration-line: underline;
     transition-duration: 1s;
 }

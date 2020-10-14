@@ -1,0 +1,339 @@
+:root {
+  --color-first: #007BDF;
+  --color-border: #DFE0E0;
+  --color-alert: #FF3C32; }
+
+:root {
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", Arial, Helvetica, sans-serif; }
+
+.header {
+  width: 100%;
+  /* Layout/header */
+  height: 4rem;
+  /* Layout/header */
+  background: #0B192C;
+  /* Theme   y   Variables */
+  display: flex;
+  /* Layout/header */
+  justify-content: space-between;
+  /* Layout/header */
+  align-items: center;
+  /* Layout/header */ }
+
+/* Esto pertenece al Header */
+.navigation {
+  margin: 0 4rem 0 0; }
+  @media screen and (max-width: 700px) {
+    .navigation {
+      display: none; } }
+
+.logo {
+  margin: 0 0 0 4rem; }
+
+.navigation-ul, .item-li, .item, .logo-link, .logo-link-text {
+  list-style: none;
+  text-decoration: none; }
+
+.logo-link, .logo-link-text {
+  color: #F9F4F4;
+  font-size: 2rem;
+  font-family: "Pridi", Arial, Helvetica, sans-serif;
+  font-weight: 700; }
+  @media screen and (max-width: 500px) {
+    .logo-link, .logo-link-text {
+      font-size: 1.5rem; } }
+
+.item {
+  color: #F9F4F4;
+  font-size: 1rem;
+  font-family: "Pridi", Arial, Helvetica, sans-serif; }
+
+.item:hover {
+  color: #00BCD4;
+  text-decoration-line: underline;
+  transition-duration: 1s; }
+
+.navigation-ul {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.item-li {
+  margin: 0 1rem; }
+
+.navigation-to-mobile {
+  display: none;
+  height: 1.8rem;
+  width: 1.8rem;
+  background: red;
+  margin: 0 1rem 0 0; }
+  @media screen and (max-width: 700px) {
+    .navigation-to-mobile {
+      display: flex; } }
+
+.section-title {
+  width: 100%;
+  height: 2rem;
+  background: #00BCD4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.add-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+
+.players-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+
+.add-buttons-to-mobile {
+  display: none; }
+
+@media screen and (max-width: 900px) {
+  .add-buttons {
+    display: none; }
+  .add-buttons-to-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; } }
+
+.add-buttons-to-mobile {
+  margin: 0 0 0 3rem;
+  width: 20rem; }
+
+.add-section-to-mobile, .add-player-to-mobile {
+  height: 1.6rem;
+  width: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .2rem;
+  background: #F7FC00; }
+
+.add-section-icon-container, .add-player-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.6rem;
+  width: 1.6rem; }
+
+.add-section-icon, .add-player-icon {
+  height: 1.3rem;
+  width: 1.3rem; }
+
+.add-section-to-mobile:hover, .add-player-to-mobile:hover {
+  background: #F9F4F4; }
+
+.add-section-to-mobile {
+  margin: 0 .5rem 0 0; }
+
+.add-buttons {
+  margin: 0 0 0 3rem;
+  width: 20rem; }
+
+.add-section, .add-player {
+  height: 1.6rem;
+  width: 8rem;
+  background: #F7FC00;
+  font-weight: 700;
+  font-family: "Pridi", Arial, Helvetica, sans-serif;
+  border-radius: .5rem;
+  border: .0rem solid black;
+  font-size: .9rem; }
+
+.add-section:hover, .add-player:hover {
+  border: 0.1rem solid black;
+  background: #F9F4F4; }
+
+.add-section {
+  margin: 0 .5rem 0 0; }
+
+.players-info {
+  margin: 0 3rem 0 0;
+  width: 20rem; }
+
+.on-loan {
+  background: #F9F4F4;
+  height: 1.4rem;
+  width: 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: .2rem; }
+
+.on-loan-p {
+  font-family: "Pridi", Arial, Helvetica, sans-serif;
+  font-size: .7rem; }
+
+.on-loan-icon-container {
+  height: 1.2rem; }
+
+.on-loan-icon {
+  object-fit: cover;
+  height: .9rem; }
+
+.section-title-positions {
+  height: fit-content;
+  width: fit-content; }
+
+@media screen and (max-width: 500px) {
+  .players-info {
+    margin: 0 1rem 0 0; }
+  .add-buttons-to-mobile, .logo {
+    margin: 0 0 0 1rem; }
+  .on-loan {
+    width: 4.2rem; } }
+
+.section-players {
+  width: 100%;
+  background: #042240;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.player-card {
+  height: 8rem;
+  width: 7.5rem;
+  background: #F9F4F4;
+  margin: .6rem .8rem;
+  border-radius: .2rem; }
+
+.player-card-description {
+  position: relative;
+  height: 6rem; }
+
+.league {
+  position: absolute;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem; }
+
+.league-photo {
+  width: 100%;
+  height: 100%;
+  margin: 0.1rem 0 0 0.1rem; }
+
+.club {
+  position: absolute;
+  top: 0;
+  left: 5.8rem;
+  width: 1.6rem;
+  height: 1.6rem; }
+
+.club-photo {
+  width: 100%;
+  height: 100%;
+  margin: 0.1rem 0.1rem 0 0; }
+
+.main-position {
+  position: absolute;
+  top: 4rem;
+  left: 0.1rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.main-position-description, .born-year-description, .age-description, .valored-description {
+  -webkit-text-stroke: 0.5px black;
+  color: white;
+  font-size: 0.7rem;
+  text-align: center; }
+
+.born-year {
+  position: absolute;
+  top: 4rem;
+  left: 5.6rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.age {
+  position: absolute;
+  top: 3.2rem;
+  left: 6.2rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.valored {
+  position: absolute;
+  top: 1.8rem;
+  left: 6rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.player-photo-container {
+  position: relative;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%; }
+
+.player-photo {
+  width: 5rem;
+  height: 6rem;
+  object-fit: cover;
+  transition: transform .2s;
+  /* Animation */ }
+
+.player-photo:hover {
+  transform: scale(1.05);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */ }
+
+.player-on-loan {
+  position: absolute;
+  top: 0.05rem;
+  left: 6.9rem;
+  width: .6rem;
+  height: .6rem;
+  display: flex;
+  justify-content: center;
+  align-content: center; }
+
+.player-on-loan-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; }
+
+.player-card-name {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.player-card-name-link {
+  list-style: none;
+  text-decoration: none;
+  color: black; }
+
+.player-card-name-link:hover {
+  color: #252727;
+  text-decoration-line: underline;
+  transition-duration: 1s; }
+
+.name {
+  width: fit-content;
+  height: fit-content;
+  font-size: .8rem; }
+
+.lastname {
+  font-weight: 700; }
