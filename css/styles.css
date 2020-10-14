@@ -39,6 +39,9 @@
 
 .logo {
   margin: 0 0 0 4rem; }
+  @media screen and (max-width: 500px) {
+    .logo {
+      margin: 0 0 0 1rem; } }
 
 .navigation-ul, .item-li, .item, .logo-link, .logo-link-text {
   list-style: none;
@@ -92,27 +95,35 @@
 .add-buttons {
   display: flex;
   justify-content: flex-start;
-  align-items: center; }
+  align-items: center;
+  margin: 0 0 0 3rem;
+  width: 20rem; }
+  @media screen and (max-width: 900px) {
+    .add-buttons {
+      display: none; } }
 
 .players-info {
   display: flex;
   justify-content: flex-end;
-  align-items: center; }
+  align-items: center;
+  margin: 0 3rem 0 0;
+  width: 20rem; }
+  @media screen and (max-width: 500px) {
+    .players-info {
+      margin: 0 1rem 0 0; } }
 
 .add-buttons-to-mobile {
-  display: none; }
-
-@media screen and (max-width: 900px) {
-  .add-buttons {
-    display: none; }
-  .add-buttons-to-mobile {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; } }
-
-.add-buttons-to-mobile {
+  display: none;
   margin: 0 0 0 3rem;
   width: 20rem; }
+  @media screen and (max-width: 900px) {
+    .add-buttons-to-mobile {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; } }
+  @media screen and (max-width: 500px) {
+    .add-buttons-to-mobile {
+      margin: 0 0 0 1rem; } }
 
 .add-section-to-mobile, .add-player-to-mobile {
   height: 1.6rem;
@@ -140,10 +151,6 @@
 .add-section-to-mobile {
   margin: 0 .5rem 0 0; }
 
-.add-buttons {
-  margin: 0 0 0 3rem;
-  width: 20rem; }
-
 .add-section, .add-player {
   height: 1.6rem;
   width: 8rem;
@@ -161,10 +168,6 @@
 .add-section {
   margin: 0 .5rem 0 0; }
 
-.players-info {
-  margin: 0 3rem 0 0;
-  width: 20rem; }
-
 .on-loan {
   background: #F9F4F4;
   height: 1.4rem;
@@ -173,6 +176,9 @@
   justify-content: space-around;
   align-items: center;
   border-radius: .2rem; }
+  @media screen and (max-width: 500px) {
+    .on-loan {
+      width: 4.2rem; } }
 
 .on-loan-p {
   font-family: "Pridi", Arial, Helvetica, sans-serif;
@@ -188,14 +194,6 @@
 .section-title-positions {
   height: fit-content;
   width: fit-content; }
-
-@media screen and (max-width: 500px) {
-  .players-info {
-    margin: 0 1rem 0 0; }
-  .add-buttons-to-mobile, .logo {
-    margin: 0 0 0 1rem; }
-  .on-loan {
-    width: 4.2rem; } }
 
 .section-players {
   width: 100%;

@@ -11,32 +11,36 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    @include mq(900) {
+        display: none;
+    }
+    margin: 0 0 0 3rem;
+    width: 20rem;
 }
 
 .players-info {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin: 0 3rem 0 0;
+    width: 20rem;
+    @include mq(500) {
+        margin: 0 1rem 0 0;
+    }   
 }
 
 .add-buttons-to-mobile {
     display: none;
-}
-
-@media screen and (max-width:900px) {
-    .add-buttons {
-        display: none;
-    }
-    .add-buttons-to-mobile {
+    @include mq(900) {
         display: flex;
         align-items: center;
         justify-content: flex-start;
     }
-}
-
-.add-buttons-to-mobile {
     margin: 0 0 0 3rem;
     width: 20rem;
+    @include mq(500) {
+        margin: 0 0 0 1rem;
+    }
 }
 
 .add-section-to-mobile, .add-player-to-mobile {
@@ -70,11 +74,6 @@
     margin: 0 .5rem 0 0;
 }
 
-.add-buttons {
-    margin: 0 0 0 3rem;
-    width: 20rem;
-}
-
 .add-section, .add-player {
     height: 1.6rem;
     width: 8rem;
@@ -95,11 +94,6 @@
     margin: 0 .5rem 0 0;
 }
 
-.players-info {
-    margin: 0 3rem 0 0;
-    width: 20rem;
-}
-
 .on-loan {
     background: $on-loan-color;
     height: 1.4rem;
@@ -108,6 +102,9 @@
     justify-content: space-around;
     align-items: center;
     border-radius: .2rem;
+    @include mq(500) {
+        width: 4.2rem;
+    }
 }
 
 .on-loan-p {
@@ -127,16 +124,4 @@
 .section-title-positions {
     height: fit-content;
     width: fit-content;
-}
-
-@media screen and (max-width: 500px) {
-    .players-info {
-        margin: 0 1rem 0 0;
-    }
-    .add-buttons-to-mobile, .logo {
-        margin: 0 0 0 1rem;
-    }
-    .on-loan {
-        width: 4.2rem;
-    }
 }

@@ -18,6 +18,9 @@
 
 .logo {
     margin: 0 0 0 4rem;
+    @include mq(500) {
+        margin: 0 0 0 1rem;
+    }
 }
 
 .navigation-ul, .item-li, .item, .logo-link, .logo-link-text {
