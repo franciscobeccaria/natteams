@@ -88,6 +88,7 @@
 .add-section:hover, .add-player:hover{
     border: .1rem solid $button-border-color;
     background: $button-hover-color;
+    cursor: pointer;
 }
 
 .add-section {
