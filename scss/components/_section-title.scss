@@ -43,7 +43,7 @@
     }
 }
 
-.add-section-to-mobile, .add-player-to-mobile {
+.add-section-to-mobile, .add-player-to-mobile, .delete-section-to-mobile {
     height: 1.6rem;
     width: 1.6rem;
     display: flex;
@@ -51,9 +51,12 @@
     justify-content: center;
     border-radius: .2rem;
     background: $button-color;
+    &:hover {
+        background: $button-hover-color;
+    }
 }
 
-.add-section-icon-container, .add-player-icon-container {
+.add-section-icon-container, .add-player-icon-container, .delete-section-icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,39 +64,36 @@
     width: 1.6rem;
 }
 
-.add-section-icon, .add-player-icon {
+.add-section-icon, .add-player-icon, .delete-section-icon {
     height: 1.3rem;
     width: 1.3rem;
 }
 
-.add-section-to-mobile:hover, .add-player-to-mobile:hover {
-    background: $button-hover-color;
-}
-
-.add-section-to-mobile {
+.add-section-to-mobile, .add-player-to-mobile {
     margin: 0 .5rem 0 0;
 }
 
-.add-section, .add-player {
+.add-section, .add-player, .delete-section {
     height: 1.6rem;
-    width: 8rem;
+    width: 6rem;
     background: $button-color;
     font-weight: 700;
     font-family: $pridi-family;
     border-radius: .5rem;
     border: .0rem solid black;
-    font-size: .9rem;
+    font-size: .7rem;
+    &:hover {
+        border: .1rem solid $button-border-color;
+        background: $button-hover-color;
+        cursor: pointer;
+    }
 }
 
-.add-section:hover, .add-player:hover{
-    border: .1rem solid $button-border-color;
-    background: $button-hover-color;
-    cursor: pointer;
-}
-
-.add-section {
+.add-section, .add-player {
     margin: 0 .5rem 0 0;
 }
+
+// on-loan:
 
 .on-loan {
     background: $on-loan-color;
