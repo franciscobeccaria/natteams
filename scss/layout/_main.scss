@@ -1,0 +1,63 @@
+.main-container {
+    height: 80rem;
+    width: 100%;
+    position: relative;
+}
+
+.main-container-changed {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.background-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .15;
+    z-index: var(--z-doubleback);
+}
+
+// si id main mide más de 1255px de height. Lo el height de main-container desaparece y se ajusta por contenido.
+
+.no-sections-created {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10rem;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.no-sections-created-no-show-it {
+    display: none;
+}
+
+.no-sections-created > p {
+    font-weight: 700;
+}
+
+.no-sections-created > .add-section {
+    margin-top: 1rem;
+    height: 2.4rem;
+    width: 12rem;
+    background: $button-color;
+    font-weight: 700;
+    font-family: $pridi-family;
+    border-radius: .5rem;
+    border: .05rem solid black;
+    font-size: 1.2rem;
+    &:hover {
+        border: .1rem solid $button-border-color;
+        background: $button-hover-color;
+        cursor: pointer;
+    }
+}

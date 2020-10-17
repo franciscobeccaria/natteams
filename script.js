@@ -105,6 +105,15 @@ const addSectionClick = () => {
 
     arrayOfSections.push(newElementID)
     console.log(arrayOfSections)
+
+    console.log(getComputedStyle(mainBehind).height)
+    console.log(getComputedStyle(mainContainerBehind).height)
+
+    changeHeight()
+
+    matches = document.querySelectorAll('.example');
+
+    noSectionsCreatedShow()
 }
 
 // Borrar sección
@@ -114,13 +123,71 @@ const addSectionClick = () => {
 
 // La opción con modal y usar condicionales if es la mejor para mi. 
 
+// IMPORTANTE: Usar querySelector para cuando resuelva los problemas de Agregar sección y Borrar sección.
+
 const deleteSectionClick = () => {
     whatIWantToRemove = prompt("Elegí uno de estas opciones: " + arrayOfSections).toLowerCase()
     console.log(whatIWantToRemove)
     const myDiv = document.getElementById(whatIWantToRemove)
     const parent = myDiv.parentNode
     parent.removeChild(myDiv)
+
+    changeHeight()
+
+    matches = document.querySelectorAll('.example');
+
+    noSectionsCreatedShow()
 }
+
+// PRINCIPAL TAREA DE SABADO: Hacer lo que va a ir detrás de las secciones, ese background. Lo que se va a mostrar cuando no haya ninguna sección. Etc. 
+
+let mainBehind = document.getElementById('main')
+let mainContainerBehind = document.getElementById('main-container')
+
+// if mainBehind mide más de 1255px de height. 
+/// mainContainerBehind.height=100%
+
+let mainBehindHeight = parseInt(getComputedStyle(mainBehind).height)
+let mainContainerBehindHeight = parseInt(getComputedStyle(mainContainerBehind).height)
+
+const changeHeight = () => {
+    mainBehindHeight = parseInt(getComputedStyle(mainBehind).height)
+    if (mainBehindHeight >= 1255) {
+        mainContainerBehind.classList.add('main-container-changed');
+        mainContainerBehind.classList.remove('main-container');
+    }
+    else {
+        mainContainerBehind.classList.remove('main-container-changed');
+        mainContainerBehind.classList.add('main-container');
+    }
+}
+
+addEventListener('resize', changeHeight)
+
+// Lo que haremos ahora, es que sino aparece ningun elemento con la clase example, se le asignará la clase no-sections-created-no-show-it a id no-sections-created
+
+let matches = document.querySelectorAll('.example');
+
+let noSectionsCreatedId = document.getElementById('no-sections-created')
+
+const noSectionsCreatedShow = () => {
+    if (matches.length > 0) {
+        noSectionsCreatedId.classList.remove('no-sections-created');
+        noSectionsCreatedId.classList.add('no-sections-created-no-show-it');
+    }
+    else {
+        noSectionsCreatedId.classList.add('no-sections-created');
+        noSectionsCreatedId.classList.remove('no-sections-created-no-show-it');
+    }
+}
+
+// QUERYSELECTOR ERA LA CLAVE DE LOS BOTONES, PARA NO USAR ONCLICK
+var el = document.querySelector(".add-player");
+console.log(el)
+el.addEventListener('click',() => {
+    console.log('funciona tio')
+})
+
 
 // Agregar jugador
 

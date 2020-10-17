@@ -1,7 +1,9 @@
 @import "config/mixins";
 @import "config/variables";
 @import "base/base";
+@import "layout/main";
 @import "layout/header";
+@import "layout/footer";
 @import "components/section-title";
 @import "components/section-players";
 @import "components/player-card";
