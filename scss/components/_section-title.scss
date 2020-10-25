@@ -125,4 +125,7 @@
 .section-title-positions {
     height: fit-content;
     width: fit-content;
+    @include mq(400) {
+        font-size: 1rem;
+    }
 }

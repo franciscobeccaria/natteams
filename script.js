@@ -1,15 +1,16 @@
 // Próximas funciones
-// Borrar una sección. 
+// Borrar una sección. LISTO
 // Agregar jugador. 
 // Borrar jugador.
 // Que se pueda agregar una sección encima o debajo. 
 // Que blank-player no se pueda borrar, asi nunca va haber una sección vacia. 
-// Crear página que se muestre cuando hay 0 secciones. 
-// Resolver el espacio vacio entre secciones y footer. 
-//// Probablemente lo mejor es que haya un fondo piola. 
-// Crear footer. 
+// Crear página que se muestre cuando hay 0 secciones. LISTO
+// Resolver el espacio vacio entre secciones y footer. LISTO
+//// Probablemente lo mejor es que haya un fondo piola. LISTO
+// Crear footer. LISTO
 // Mover jugadores: cambiar orden dentro de la sección. Y mover a otra sección. 
 // Otra cosa que me faltó, es que no se pueda repetir el nombre de las secciones, no puede haber dos arqueros y arqueros.
+///sigue anterior: También faltó un máximo de caracteres que se pueda escribir. 
 
 //IMPORTANTES
 // Agregar que cuando posiciones el mouse encima de los buttons-to-mobile, apareza un mensajito de lo que hace. 
@@ -63,7 +64,7 @@ const addSectionClick = () => {
     `
 
     const playerDescriptionTwo = `
-    <section class="section-players">
+    <section class="section-players" id="${sectionTitlePositions.toLowerCase()+"-list"}">
     <div class="player-card">
             <div class="player-card-description">
                 <div class="league">
@@ -93,6 +94,9 @@ const addSectionClick = () => {
             </div>
             <div class="player-card-name">
                 <a class="player-card-name-link" href="#"><p class="name"><span class="lastname">AGREGAR JUGADOR</span></p></a>
+            </div>
+            <div class="player-card-options">
+            <img src="" alt="">
             </div>
         </div>`
 
@@ -188,6 +192,9 @@ el.addEventListener('click',() => {
     console.log('funciona tio')
 })
 
+let testingTT = document.querySelectorAll('.add-player')
+
+let proba = document.getElementsByClassName('add-player')
 
 // Agregar jugador
 
@@ -196,3 +203,277 @@ el.addEventListener('click',() => {
 /// Paso 1: Cuando tocas el boton agregar jugador, que se agregue un blank en la section-players.
 /// Paso 2: Cuando tocas el blank, que se pueda reemplazar. Esto es fácil dentro de todo. 
 
+// Al crear un jugador
+/// Se crea una clase para cada jugador
+/// Y se crea una funcion para cada clase
+/// Y se le debe aplicar la clase unica al boton. 
+/// O sea, mediante un ciclo, se crea una clase para el boton de "ese" jugador 
+//          y también se crea una funcion especifica para "esa" clase de "ese jugador".
+
+const titleT = document.querySelector(".add-player")
+
+const holaMundoT = e => console.log(e.target.classList.value)
+const holaMundoTe = e => console.log(e.target.classList)
+
+titleT.addEventListener('click', e => {
+    holaMundoT(e)
+    holaMundoTe(e)
+})
+
+// Lo que a mi se me ocurre:
+//      Tenemos cada boton con un class personalizado, cada boton tiene class=francoarmani, class=estebanandrada, etc. ESTO LO TENGO QUE CREAR. 
+//      Utilizamos lo de "e" para imprimir un string, digamos que damos click en el boton de Armani, hacemos todo para que 
+//              imprima en el string francoarmani y eso se guarde en una variable. LINEA 209.
+//      Y después hacemos que el elemento que tiene la class francoarmani se elimine. LINEA 231
+
+/* <p id ="remove" style = "color: green; font-size: 24px; font-weight: bold;"> 
+ on click remove this section
+</p> 
+
+<button onClick = "remove()"> 
+   click here 
+</button> 
+var htmlElement = document.getElementById('remove'); //use getElemeyId or getElementsByClassName According to your need;
+    
+function remove() { 
+  htmlElement.remove();
+} */
+
+// OBJETIVO DIA DOMINGO / DIA LUNES
+//      Entender lo de e. Básicamente se explica en Los Eventos en el curso de JS DOM. Repasar el video sería una buena idea. 
+
+
+main.addEventListener('click', (event) => {
+    if (event.target.className == 'name') {
+        console.log('tocaste un nombre')
+        const name = event.target
+        const nameContainer = name.parentNode
+        const divName = nameContainer.parentNode
+        const playerCard = divName.parentNode
+        // aparece modal con buscador y vista previa
+        // elegimos jugador del modal
+        // se aplican cambios al html segun el jugador que elijamos
+        modalBg.classList.add('modal-bg-active')
+    }
+    if (event.target.className == 'lastname') {
+        console.log('tocaste un apellido')
+        const lastname = event.target
+        const name = lastname.parentNode
+        const nameContainer = name.parentNode
+        const divName = nameContainer.parentNode
+        const playerCard = divName.parentNode
+        // aparece modal con buscador y vista previa
+        // elegimos jugador del modal
+        // se aplican cambios al html segun el jugador que elijamos
+        modalBg.classList.add('modal-bg-active')
+    } 
+})
+
+main.addEventListener('click', (event) => {
+    if (event.target.className == 'add-player') {
+        console.log('tocaste boton agregar jugador')
+    }
+})
+
+// Función para que aparezca modal de buscador de jugadores
+
+let modalBtn
+let modalBg = document.getElementById('modal-bg')
+let closeModal = document.querySelector('.close-modal')
+
+/* modalBg.addEventListener('click', (event) => {
+    if (event.target.className == 'close-modal') {
+        console.log('bien')
+    }
+}) */
+
+closeModal.addEventListener('click', () => {
+    console.log('clase active de modal removida')
+    modalBg.classList.remove('modal-bg-active')
+})
+
+// Video buscador:
+
+// después cambiar nombre de listVideo
+const listVideo = document.getElementById('list')
+
+function setList(group) {
+    clearList();
+    for (let person of group) {
+        const item = document.createElement('li');
+        item.classList.add('list-group-item');
+        const text = document.createTextNode(person.name);
+        item.appendChild(text);
+        listVideo.appendChild(item);
+    }
+    if (group.length === 0) {
+        setNoResults();
+    }
+}
+
+function clearList() {
+    while (listVideo.firstChild) {
+        listVideo.removeChild(listVideo.firstChild);
+    }
+}
+
+function setNoResults() {
+    const item = document.createElement('li');
+    item.classList.add('list-group-item');
+    const text = document.createTextNode('No results found');
+    item.appendChild(text);
+    listVideo.appendChild(item);
+}
+
+function getRelevancy(value, searchTerm) {
+    if (value === searchTerm) {
+        return 2;
+    } else if (value.startsWith(searchTerm)) {
+        return 1;
+    } else if (value.includes(searchTerm)) {
+        return 0;
+    }
+    // Se podría poner else {return 0}, en vez de ese último else if
+}
+
+const searchInput = document.getElementById('search')
+
+searchInput.addEventListener('input', (event) => {
+    let value = event.target.value
+    if (value && value.trim().length > 0) {
+        value = value.trim().toUpperCase();
+        setList(playersListSearch.filter(person => {
+            return person.name.includes(value);
+        }).sort((personA, personB) => {
+            return getRelevancy(personB.name, value) - getRelevancy(personA.name, value);
+        }));
+    } else {
+        clearList();
+    }
+})
+
+// Borrar jugador:
+
+main.addEventListener('click', (event) => {
+    if (event.target.className == 'player-card-options') {
+        const button = event.target
+        const parent = button.parentNode
+        parent.remove()
+    }
+})
+
+// SORTABLE
+
+const listSortable = document.getElementById('section-players')
+
+Sortable.create(listSortable, {
+    animation: 300,
+    chosenClass: "chosen",
+    ghostClass: "ghost",
+    dragClass: "drag",
+    group: {
+        name: "players-list"
+    },
+/*     store: {
+        // Para guardar el orden de la lista en memoria. 
+        set: (sortable) => {
+            const orderOfTheList = sortable.toArray()
+            console.log(orderOfTheList)
+            localStorage.setItem(sortable.options.group.name, orderOfTheList.join('|'))
+        },
+
+        // Obtenemos el orden de la lista al cargar la página
+        get: (sortable) => {
+            const orderObtained = localStorage.getItem(sortable.options.group.name)
+            console.log(orderObtained)
+            return orderObtained ? orderObtained.split('|') : []
+        }
+    }, */
+/*     onUnchoose: () => {
+        const htmlContents = document.getElementById('main');
+        const htmlContentsInner = htmlContents.innerHTML;
+        const saving = localStorage.setItem('myBook', JSON.stringify(htmlContentsInner));
+        console.log(htmlContentsInner)
+    } */
+})
+
+const listSortableTwo = document.getElementById('section-players-two')
+
+Sortable.create(listSortableTwo, {
+    animation: 300,
+    chosenClass: "chosen",
+    ghostClass: "ghost",
+    dragClass: "drag",
+    group: {
+        name: "players-list"
+    },
+/*     store: {
+        // Para guardar el orden de la lista en memoria. 
+        set: (sortable) => {
+            const orderOfTheList = sortable.toArray()
+            console.log(orderOfTheList)
+            localStorage.setItem(sortable.options.group.name, orderOfTheList.join('|'))
+        },
+
+        // Obtenemos el orden de la lista al cargar la página
+        get: (sortable) => {
+            const orderObtained = localStorage.getItem(sortable.options.group.name)
+            console.log(orderObtained)
+            return orderObtained ? orderObtained.split('|') : []
+        }
+    }, */
+/*     onUnchoose: () => {
+        const htmlContents = document.getElementById('main');
+        const htmlContentsInner = htmlContents.innerHTML;
+        const saving = localStorage.setItem('myBook', JSON.stringify(htmlContentsInner));
+        console.log(htmlContentsInner)
+    } */
+})
+
+
+
+/* body.addEventListener('click', () => {
+    const htmlContents = document.getElementById('main');
+    const htmlContentsInner = htmlContents.innerHTML;
+    const saving = localStorage.setItem('myBook', JSON.stringify(htmlContentsInner));
+    console.log(htmlContentsInner)
+})
+
+const extracting = localStorage.getItem('myBook')
+const extractingTo = JSON.parse(extracting)
+
+const footer = document.getElementById('footer')
+
+footer.addEventListener('click', () => {
+    const newElement = document.createElement('section') 
+    main.appendChild(newElement)
+    newElement.innerHTML = extractingTo
+    console.log('pipi')
+}) */
+
+
+// Para mover las secciones.
+/* Sortable.create(main, {
+    animation: 300,
+    chosenClass: "chosen",
+    ghostClass: "ghost",
+    dragClass: "drag",
+    group: {
+        name: "main-list"
+    },
+    store: {
+        // Para guardar el orden de la lista en memoria. 
+        set: (sortable) => {
+            const orderOfTheList = sortable.toArray()
+            console.log(orderOfTheList)
+            localStorage.setItem(sortable.options.group.name, orderOfTheList.join('|'))
+        },
+
+        // Obtenemos el orden de la lista al cargar la página
+        get: (sortable) => {
+            const orderObtained = localStorage.getItem(sortable.options.group.name)
+            console.log(orderObtained)
+            return orderObtained ? orderObtained.split('|') : []
+        }
+    }
+}) */

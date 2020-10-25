@@ -4,6 +4,8 @@
     background: $player-card-color;
     margin: .6rem .8rem;
     border-radius: .2rem;
+    position: relative;
+    cursor: grab;
 }
 
 .player-card-description {
@@ -149,4 +151,44 @@
 
 .lastname {
     font-weight: 700;
+}
+
+.player-card:hover {
+    .player-card-options {
+        display: flex;
+    }
+}
+
+.player-card-options {
+    display: none;
+    height: 1.5rem;
+    width: 1.5rem;
+    background: red;
+    position: absolute;
+    top: 0.05rem;
+    left: 7.4rem;
+    justify-content: center;
+    align-content: center;
+    z-index: var(--z-tooltip);
+    @include mq(1024) {
+        display: flex;
+        height: 1rem;
+        width: 1rem;
+    }
+}
+
+// SORTABLE
+
+.chosen {
+    transform: scale(1.02) rotate(-1deg);
+    background: #e7e5e5;
+    cursor: move;
+}
+
+.ghost {
+    opacity: 0;
+}
+
+.drag {
+    opacity: 1;
 }
