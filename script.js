@@ -303,6 +303,7 @@ function setList(group) {
         const item = document.createElement('li');
         item.classList.add('list-group-item');
         const text = document.createTextNode(person.name);
+        console.log(text)
         item.appendChild(text);
         listVideo.appendChild(item);
     }
@@ -340,7 +341,7 @@ const searchInput = document.getElementById('search')
 
 searchInput.addEventListener('input', (event) => {
     let value = event.target.value
-    if (value && value.trim().length > 0) {
+    if (value && value.trim().length > 2) {
         value = value.trim().toUpperCase();
         setList(playersListSearch.filter(person => {
             return person.name.includes(value);

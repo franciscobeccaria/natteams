@@ -11,6 +11,7 @@
     visibility: hidden;
     opacity: 0;
     transform: visibility 0s opacity 0,5s;
+    z-index: var(--z-tooltip);
 }
 
 .modal-bg-active {
@@ -25,14 +26,25 @@
     position: relative;
     padding: 0.5rem;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 9fr 1fr;
     grid-template-rows: 1fr 5fr;
+    grid-row-gap: .5rem;
+}
+
+.search {
+    width: 100%;
 }
 
 .close-modal {
-    position: absolute;
+/*     position: absolute;
     left: 95%;
-    top: .5rem;
+    top: .5rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-modal-icon {
     height: 1rem;
     width: 1rem;
     background-color: red;
@@ -40,4 +52,14 @@
 
 .list-group {
     list-style: none;
+    height: 100%;
+    overflow: auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.list-group-item {
+    &:hover {
+        background-color: yellow;
+    }
 }
