@@ -1,5 +1,25 @@
 // Mini base de datos de jugadores
 
+/* var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+	if (this.readyState === this.DONE) {
+		console.log(this.responseText);
+	}
+});
+
+xhr.open("GET", "https://api-football-v1.p.rapidapi.com/v2/predictions/157462");
+xhr.setRequestHeader("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
+xhr.setRequestHeader("x-rapidapi-key", "8e24c1ddadmsh14d300e160f7af5p1e6e9cjsnf29317490fbd");
+
+xhr.send(data);
+
+const apiTest = get("https://api-football-v1.p.rapidapi.com/v2/players/search/{lastname}"); */
+
+
 const francoArmani01 = {
     name: 'FRANCO',
     lastname: 'ARMANI',
@@ -27,21 +47,23 @@ const emilianoMartinez01 = {
 }
 
 const sergioAguero01 = {
-    name: 'SERGIO',
-    lastname: 'AGÜERO',
-    league: "img/leagues/EPL.png",
-    leagueText: "Premier League",
-    club: "img/clubs/mancity.png",
-    clubText: "Manchester City",
-    bornYear: 1990,
-    positions: 'DEL',
-    valored: '40M',
-    playerPhoto: "img/players/aguero.png"
+    name:                       'SERGIO',
+    lastname:                   'AGÜERO',
+    league:         "img/leagues/EPL.png",
+    leagueText:                 "Premier League",
+    club:           "img/clubs/mancity.png",
+    clubText:                   "Manchester City",
+    bornYear:                   1990,
+    positions:                  'DEL',
+    valored:                    '40M',
+    playerPhoto:    "img/players/aguero.png"
 }
 
 const playersListSearch = [
     {name: sergioAguero01.name         + " " +      sergioAguero01.lastname,
-        team: sergioAguero01.clubText
+        team: sergioAguero01.clubText,
+        firstName: sergioAguero01.name,
+        lastName: sergioAguero01.lastname,
     },
     {name: emilianoMartinez01.name     + " " +      emilianoMartinez01.lastname},
     {name: francoArmani01.name         + " " +      francoArmani01.lastname},
@@ -54,6 +76,47 @@ const playersListSearch = [
     {name: "GONZALO MONTIEL"},
     {name: "TOMAS ANDRADA"}
 ]
+
+const jugadores = [
+        {firstName:                 'SERGIO',
+        lastName:                   'AGÜERO',
+        name:                       'SERGIO AGÜERO',
+        league:         "img/leagues/EPL.png",
+        leagueText:                 "Premier League",
+        club:           "img/clubs/mancity.png",
+        clubText:                   "Manchester City",
+        bornYear:                   1990,
+        positions:                  'DEL',
+        valored:                    '40M',
+        playerPhoto:    "img/players/aguero.png"},
+
+        {firstName:                 'EMILIANO',
+        lastName:                   'MARTINEZ',
+        name:                       'EMILIANO MARTINEZ',
+        league:         "img/leagues/EPL.png",
+        leagueText:                 "Premier League",
+        club:           "img/clubs/villa.png",
+        clubText:                   "Aston Villa",
+        bornYear:                   1990,
+        positions:                  'DEL',
+        valored:                    '40M',
+        playerPhoto:    "img/players/martinez.png"},
+
+        {firstName:                 'FRANCO',
+        lastName:                   'ARMANI',
+        name:                       'FRANCO ARMANI',
+        league:         "img/leagues/LPF.png",
+        leagueText:                 "LPF de Argentina",
+        club:           "img/clubs/river.png",
+        clubText:                   "River Plate",
+        bornYear:                   1990,
+        positions:                  'DEL',
+        valored:                    '40M',
+        playerPhoto:    "img/players/armani.png"}        
+]
+
+// Base de datos y ciclos dejarlos para más tarde. Y tratar de hacerlo con Firebase. 
+// Primero, vamos a trabajar con algunos jugadores y hacer que aparezcan en pantalla, y se impriman en el HTML. 
 
 const teamsListSearch = [
     {team: sergioAguero01.clubText},

@@ -397,12 +397,12 @@
   text-decoration-line: underline;
   transition-duration: 1s; }
 
-.name {
+.name, .add-name {
   width: fit-content;
   height: fit-content;
   font-size: .7rem; }
 
-.lastname {
+.lastname, .add-lastname {
   font-weight: 700; }
 
 .player-card:hover .player-card-options {
@@ -459,13 +459,17 @@
 .modal {
   background-color: white;
   width: 50%;
-  height: 30%;
+  height: 70%;
   position: relative;
   padding: 0.5rem;
   display: grid;
   grid-template-columns: 9fr 1fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 11fr;
   grid-row-gap: .5rem; }
+  @media screen and (max-width: 900px) {
+    .modal {
+      width: 100%;
+      margin: 0 2rem; } }
 
 .search {
   width: 100%; }
@@ -490,5 +494,7 @@
   grid-column-start: 1;
   grid-column-end: 3; }
 
-.list-group-item:hover {
-  background-color: yellow; }
+.list-group-item {
+  padding: .2rem; }
+  .list-group-item:hover {
+    background-color: yellow; }

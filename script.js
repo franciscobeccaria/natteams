@@ -93,7 +93,7 @@ const addSectionClick = () => {
                 </div>
             </div>
             <div class="player-card-name">
-                <a class="player-card-name-link" href="#"><p class="name"><span class="lastname">AGREGAR JUGADOR</span></p></a>
+                <a class="player-card-name-link" href="#"><p class="add-name"><span class="add-lastname">AGREGAR JUGADOR</span></p></a>
             </div>
             <div class="player-card-options">
             <img src="" alt="">
@@ -244,7 +244,7 @@ function remove() {
 
 
 main.addEventListener('click', (event) => {
-    if (event.target.className == 'name') {
+    if (event.target.className == 'add-name') {
         console.log('tocaste un nombre')
         const name = event.target
         const nameContainer = name.parentNode
@@ -255,7 +255,7 @@ main.addEventListener('click', (event) => {
         // se aplican cambios al html segun el jugador que elijamos
         modalBg.classList.add('modal-bg-active')
     }
-    if (event.target.className == 'lastname') {
+    if (event.target.className == 'add-lastname') {
         console.log('tocaste un apellido')
         const lastname = event.target
         const name = lastname.parentNode
@@ -272,6 +272,7 @@ main.addEventListener('click', (event) => {
 main.addEventListener('click', (event) => {
     if (event.target.className == 'add-player') {
         console.log('tocaste boton agregar jugador')
+        modalBg.classList.add('modal-bg-active')
     }
 })
 
@@ -303,7 +304,7 @@ function setList(group) {
         const item = document.createElement('li');
         item.classList.add('list-group-item');
         const text = document.createTextNode(person.name);
-        console.log(text)
+        console.log(document.createTextNode(person.club));
         item.appendChild(text);
         listVideo.appendChild(item);
     }
@@ -343,13 +344,21 @@ searchInput.addEventListener('input', (event) => {
     let value = event.target.value
     if (value && value.trim().length > 2) {
         value = value.trim().toUpperCase();
-        setList(playersListSearch.filter(person => {
+        setList(jugadores.filter(person => {
             return person.name.includes(value);
         }).sort((personA, personB) => {
             return getRelevancy(personB.name, value) - getRelevancy(personA.name, value);
         }));
     } else {
         clearList();
+    }
+})
+
+// Detectar en que jugador di click y extraer la info del mismo
+
+listVideo.addEventListener('click', (event) => {
+    if (event.target.className == 'list-group-item') {
+        console.log(event.target)
     }
 })
 

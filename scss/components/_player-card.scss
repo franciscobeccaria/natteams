@@ -143,13 +143,13 @@
     transition-duration: 1s;
 }
 
-.name {
+.name, .add-name {
     width: fit-content;
     height: fit-content;
     font-size: .7rem;
 }
 
-.lastname {
+.lastname, .add-lastname {
     font-weight: 700;
 }
 
