@@ -20,6 +20,12 @@ const main = document.getElementById('main')
 
 const arrayOfSections = ['arqueros', ]
 
+// Variables globales para el modal
+
+let modalBtn
+let modalBg = document.getElementById('modal-bg')
+let closeModal = document.querySelector('.close-modal')
+
 // Agregar sección
 
 // Problema: Terminé utilizando onclick en html, en vez de un addEventListener u otro en js. No encontré ninguna forma de realizar el proceso mediante js. getElementByClassName no funcionó. Y si funcionaba, terminaba no funcionando en los nuevos. 
@@ -269,18 +275,57 @@ main.addEventListener('click', (event) => {
     } 
 })
 
+let addPlayerButton
+let addButtonsContainer
+let sectionTitle
+let sectionPlayers
+let playerSelected
+
 main.addEventListener('click', (event) => {
     if (event.target.className == 'add-player') {
         console.log('tocaste boton agregar jugador')
+        addPlayerButton = event.target
+        addButtonsContainer = addPlayerButton.parentNode
+        sectionTitle = addButtonsContainer.parentNode
+        sectionPlayers = sectionTitle.nextSibling.nextSibling
         modalBg.classList.add('modal-bg-active')
     }
 })
 
-// Función para que aparezca modal de buscador de jugadores
+// Detectar en qué jugador hice el click
+// Insertar jugador seleccionado en la sección que hicimos click
 
-let modalBtn
+// Problema: Hago click en un list-group-item y dentro tiene imagenes y otros div, por lo tanto, tenía que crear una función diferente para cada div y cada elemento dentro de list-group-item.
+// Solución: Creamos list-group-item-inside-container, un div con z index superior, para cada que hagamos click sea sobre ese div. 
+
+modalBg.addEventListener('click', (event) => {
+    if (event.target.className == 'list-group-item-inside-container') {
+        console.log('tocaste un jugador')
+        console.log(event.target.parentNode)
+        playerSelected = event.target.parentNode
+        sectionPlayers.appendChild(playerSelected)
+    }
+})
+
+
+// Una idea, pero no funcionó. 
+/* modalBg.addEventListener('click', () => {
+    const cbox = document.querySelectorAll(".list-group-item");
+    console.log(cbox)
+    for (let i = 0; i < cbox.length; i++) {
+        console.log(i)
+        cbox[i].addEventListener("click", (event) => {
+        console.log(event.target)
+        });
+    }
+}) */
+
+
+// Función para que aparezca modal de buscador de jugadores
+// Declaradas arriba por problemas de leer variables globales
+/* let modalBtn
 let modalBg = document.getElementById('modal-bg')
-let closeModal = document.querySelector('.close-modal')
+let closeModal = document.querySelector('.close-modal') */
 
 /* modalBg.addEventListener('click', (event) => {
     if (event.target.className == 'close-modal') {
@@ -298,7 +343,7 @@ closeModal.addEventListener('click', () => {
 // después cambiar nombre de listVideo
 const listVideo = document.getElementById('list')
 
-function setList(group) {
+/* function setList(group) {
     clearList();
     for (let person of group) {
         const item = document.createElement('li');
@@ -306,6 +351,77 @@ function setList(group) {
         const text = document.createTextNode(person.name);
         console.log(document.createTextNode(person.club));
         item.appendChild(text);
+        listVideo.appendChild(item);
+    }
+    if (group.length === 0) {
+        setNoResults();
+    }
+} */
+
+function setList(group) {
+    clearList();
+    for (let person of group) {
+        // Creando cada elemento HTML
+        const item = document.createElement('div');
+        const itemContainerInside = document.createElement('div');
+        const firstDiv = document.createElement('div')
+        const secondDiv = document.createElement('div')
+        const leagueFirstDiv = document.createElement('div')
+            const imgLeagueFirstDiv = document.createElement('img')
+        const clubFirstDiv = document.createElement('div')
+            const imgClubFirstDiv = document.createElement('img')
+        const playerFirstDiv = document.createElement('div')
+            const imgPlayerFirstDiv = document.createElement('img')
+        const nameSecondDiv = document.createElement('div')
+            const containerNameSecondDiv = document.createElement('a')
+            const firstNameSecondDiv = document.createElement('p')
+            const secondNameSecondDiv = document.createElement('span')
+        // Agregando las clases a cada elemento HTML
+        item.classList.add('list-group-item');
+        firstDiv.classList.add('modal-player-card-description');
+        secondDiv.classList.add('modal-player-card-name');
+        itemContainerInside.classList.add('list-group-item-inside-container');
+        leagueFirstDiv.classList.add('modal-league');
+        imgLeagueFirstDiv.classList.add('modal-league-photo');
+        clubFirstDiv.classList.add('modal-club');
+        imgClubFirstDiv.classList.add('modal-club-photo');
+        playerFirstDiv.classList.add('modal-player-photo-container');
+        imgPlayerFirstDiv.classList.add('modal-player-photo');
+        containerNameSecondDiv.classList.add('modal-player-card-name-link')
+        firstNameSecondDiv.classList.add('modal-name')
+        secondNameSecondDiv.classList.add('modal-lastname')
+        // Creando contenido para luego meterlo dentro de cada elemento HTML
+        const text = document.createTextNode(person.name);
+        const leagueImage = document.createTextNode(person.league);
+        const clubImage = document.createTextNode(person.club);
+        const playerImage = document.createTextNode(person.playerPhoto);
+        const playerFirstname = document.createTextNode(person.firstName + " ");
+        const playerLastname = document.createTextNode(person.lastName);
+        // Insertando contenido dentro de los elementos HTML
+        secondNameSecondDiv.appendChild(playerLastname)
+        firstNameSecondDiv.appendChild(playerFirstname)
+        imgPlayerFirstDiv.src = playerImage.wholeText
+        imgClubFirstDiv.src = clubImage.wholeText
+        imgLeagueFirstDiv.src = leagueImage.wholeText 
+        // Metiendo cada img en cada div
+        leagueFirstDiv.appendChild(imgLeagueFirstDiv)
+        clubFirstDiv.appendChild(imgClubFirstDiv)
+        playerFirstDiv.appendChild(imgPlayerFirstDiv)
+        // Metiendo los nombres en el container del nombre del jugador
+        firstNameSecondDiv.appendChild(secondNameSecondDiv)
+        containerNameSecondDiv.appendChild(firstNameSecondDiv)
+        // Metiendo cada div en first o second div. 
+        firstDiv.appendChild(leagueFirstDiv)
+        firstDiv.appendChild(clubFirstDiv)
+        firstDiv.appendChild(playerFirstDiv)
+        secondDiv.appendChild(containerNameSecondDiv)
+        // Metiendo first y second div en item. 
+        item.appendChild(firstDiv)
+        item.appendChild(secondDiv)
+        item.appendChild(itemContainerInside)
+        
+
+        //item.appendChild(text);
         listVideo.appendChild(item);
     }
     if (group.length === 0) {
@@ -351,14 +467,6 @@ searchInput.addEventListener('input', (event) => {
         }));
     } else {
         clearList();
-    }
-})
-
-// Detectar en que jugador di click y extraer la info del mismo
-
-listVideo.addEventListener('click', (event) => {
-    if (event.target.className == 'list-group-item') {
-        console.log(event.target)
     }
 })
 
