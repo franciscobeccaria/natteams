@@ -1,6 +1,6 @@
 .player-card {
     height: 8rem;
-    width: 7.5rem;
+    width: 7.68rem;
     background: $player-card-color;
     margin: .6rem .8rem;
     border-radius: .2rem;
@@ -8,49 +8,84 @@
     cursor: grab;
 }
 
-.player-card-description {
+.player-card-in-search-modal {
+    height: 8rem;
+    width: 7.68rem;
+    background: $player-card-color;
+    margin: .3rem .4rem;
+    border-radius: .2rem;
     position: relative;
-    height: 6rem;
+    cursor: grab;
 }
 
-.league {
+.player-card-description {
+    position: relative;
+    height: 6.4rem;
+}
+
+.player-card-info {
     position: absolute;
     top: 0;
-    width: 1.6rem;
-    height: 1.6rem;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr)); // Not resize rows
+    height: 100%;
+    width: 3rem;
+}
+
+.main-position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-position-description {
+    //-webkit-text-stroke: 0.5px $player-card-info-inside-border;
+    color: $player-card-info-inside-color;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* .league {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .league-photo {
     width: 100%;
     height: 100%;
     margin: 0.1rem 0 0 0.1rem;
+} */
+
+.nation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    
+.nation-photo {
+    width: 1.7rem;
+    padding-bottom: .2rem;
 }
 
 .club {
-    position: absolute;
-    top: 0;
-    left: 5.8rem;
-    width: 1.6rem;
-    height: 1.6rem;
-}
-
-.club-photo {
-    width: 100%;
-    height: 100%;
-    margin: 0.1rem 0.1rem 0 0;
-}
-
-.main-position {
-    position: absolute;
-    top: 4rem;
-    left: 0.1rem;
-    height: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.main-position-description, .born-year-description, .age-description, .valored-description {
+.club-photo {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+
+/* .born-year-description, .age-description, .valored-description {
     -webkit-text-stroke: 0.5px $player-card-info-inside-border;
     color: $player-card-info-inside-color;
     font-size: 0.7rem;
@@ -85,29 +120,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .player-photo-container {
     position: relative;
-    top: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     height: 100%;
     width: 100%;
 }
 
 .player-photo {
-    width: 5rem;
-    height: 6rem;
+    width: 5.34rem;
+    height: 6.4rem;
     object-fit: cover;
-    transition: transform .2s; /* Animation */
 }
 
-.player-photo:hover {
-    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  }
-
-.player-on-loan {
+/* .player-on-loan {
     position: absolute;
     top: 0.05rem;
     left: 6.9rem;
@@ -122,10 +151,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
+} */
 
 .player-card-name {
-    height: 2rem;
+    height: 1.6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,6 +185,9 @@
 .player-card:hover {
     .player-card-options {
         display: flex;
+    }
+    .none {
+        display: none;
     }
 }
 

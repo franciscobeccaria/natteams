@@ -282,6 +282,7 @@ let sectionPlayers
 let playerSelected
 
 main.addEventListener('click', (event) => {
+    const searcher = document.getElementById('search')
     if (event.target.className == 'add-player') {
         console.log('tocaste boton agregar jugador')
         addPlayerButton = event.target
@@ -289,7 +290,15 @@ main.addEventListener('click', (event) => {
         sectionTitle = addButtonsContainer.parentNode
         sectionPlayers = sectionTitle.nextSibling.nextSibling
         modalBg.classList.add('modal-bg-active')
+        searcher.focus()
     }
+    document.addEventListener('keydown', function(event){
+        if(event.key === "Escape"){
+            modalBg.classList.remove('modal-bg-active')
+            clearList()
+            searcher.value = ""
+        }
+    });
 })
 
 // Detectar en qué jugador hice el click
@@ -299,11 +308,23 @@ main.addEventListener('click', (event) => {
 // Solución: Creamos list-group-item-inside-container, un div con z index superior, para cada que hagamos click sea sobre ese div. 
 
 modalBg.addEventListener('click', (event) => {
+    const searcher = document.getElementById('search')
     if (event.target.className == 'list-group-item-inside-container') {
         console.log('tocaste un jugador')
-        console.log(event.target.parentNode)
+        //console.log(event.target.parentNode.childNodes)
         playerSelected = event.target.parentNode
+        playerSelected.classList.remove('player-card-in-search-modal')
+        playerSelected.classList.add('player-card')
+        const divToRemoveClassNoneOne = playerSelected.childNodes[5]
+        const divToRemoveClassNoneTwo = playerSelected.childNodes[7]
+        const divToRemove = playerSelected.childNodes[9]
+        divToRemoveClassNoneOne.classList.remove('none')
+        divToRemoveClassNoneTwo.classList.remove('none')
+        divToRemove.remove()
         sectionPlayers.appendChild(playerSelected)
+        modalBg.classList.remove('modal-bg-active')
+        clearList()
+        searcher.value = ""
     }
 })
 
@@ -363,7 +384,7 @@ function setList(group) {
     for (let person of group) {
         // Creando cada elemento HTML
         const item = document.createElement('div');
-        const itemContainerInside = document.createElement('div');
+        /* const itemContainerInside = document.createElement('div');
         const firstDiv = document.createElement('div')
         const secondDiv = document.createElement('div')
         const leagueFirstDiv = document.createElement('div')
@@ -375,8 +396,16 @@ function setList(group) {
         const nameSecondDiv = document.createElement('div')
             const containerNameSecondDiv = document.createElement('a')
             const firstNameSecondDiv = document.createElement('p')
-            const secondNameSecondDiv = document.createElement('span')
-        // Agregando las clases a cada elemento HTML
+            const secondNameSecondDiv = document.createElement('span') */
+        
+        
+        // Arranque a crearlo para la nueva versión de la player card, pero voy usar backticks. 
+        /* // Creando cada elemento HTML (nueva versión de la player-card)
+        const item = document.createElement('div') // player-card DIV
+            const playerCardDescription = document.createElement('div') */
+
+
+        /* // Agregando las clases a cada elemento HTML
         item.classList.add('list-group-item');
         firstDiv.classList.add('modal-player-card-description');
         secondDiv.classList.add('modal-player-card-name');
@@ -418,8 +447,94 @@ function setList(group) {
         // Metiendo first y second div en item. 
         item.appendChild(firstDiv)
         item.appendChild(secondDiv)
-        item.appendChild(itemContainerInside)
-        
+        item.appendChild(itemContainerInside) */
+
+        // NUEVA VERSIÓN: Creando contenido para luego meterlo dentro de cada elemento HTML 
+        const text = document.createTextNode(person.name);
+        const newLeagueImage = document.createTextNode(person.league).wholeText;
+        const newClubImage = document.createTextNode(person.club).wholeText;
+        const newPlayerImage = document.createTextNode(person.playerPhoto).wholeText;
+        const newPlayerFirstName = document.createTextNode(person.firstName).wholeText;
+        const newPlayerLastName = document.createTextNode(person.lastName).wholeText;
+        const newNationImage = document.createTextNode(person.nation).wholeText;
+        const newLeagueText = document.createTextNode(person.leagueText).wholeText;
+        const newLeagueNationImage = document.createTextNode(person.leagueNation).wholeText;
+        const newClubText = document.createTextNode(person.clubText).wholeText;
+        const newPlayerBornYear = document.createTextNode(person.bornYear).wholeText;
+        const newPlayerPosition = document.createTextNode(person.positions).wholeText;
+        const newPlayerMainPosition = document.createTextNode(person.mainPosition).wholeText;
+        const newPlayerOtherPosition = document.createTextNode(person.otherPosition).wholeText;
+        const newPlayerValored = document.createTextNode(person.valored).wholeText;
+        const newPlayerTransfermarkt = document.createTextNode(person.transfermarkt).wholeText;
+        const newPlayerSofascore = document.createTextNode(person.sofascore).wholeText;
+
+        // Usando backticks para crear el HTML y usando dentro de este HTML variables JS:
+        const playerCardToModal = `
+
+        <div class="player-card-in-search-modal">
+                        <div class="player-card-description">
+                            <div class="player-card-info">
+                                <div class="main-position">
+                                    <p class="main-position-description">${newPlayerPosition}</p>
+                                </div>
+                                <div class="nation">
+                                    <img class="nation-photo" src="${newNationImage}" alt="">
+                                </div>
+                                <div class="club">
+                                    <img class="club-photo" src="${newClubImage}" alt="">
+                                </div>
+                            </div>
+                            <div class="player-photo-container">
+                                <img class="player-photo" src="${newPlayerImage}" alt="">
+                            </div>
+                        </div>
+                        <div class="player-card-name">
+                            <a class="player-card-name-link" href="#"><p class="name">${newPlayerFirstName} <span class="lastname">${newPlayerLastName}</span></p></a>
+                        </div>
+                        <div class="player-card-options ignore-elements none"></div>
+                        <div class="player-card-modal ignore-elements none">
+                            <div class="modal-photo">
+                                <img class="modal-photo-content" src="img/dynamic players/virgil-van-dijk-liverpool-fc-1597837549-45582.jpg" alt="">
+                            </div>
+                            <div class="modal-description-container">
+                                <div class="modal-main-position">
+                                    <p class="modal-normal"><span class="modal-bold">Posición principal:</span><br>${newPlayerMainPosition}</p>
+                                </div>
+                                <div class="modal-other-position">
+                                    <p class="modal-normal"><span class="modal-bold">Posición secundaria:</span><br>${newPlayerOtherPosition}</p>
+                                </div>
+                                <div class="modal-age">
+                                    <p class="modal-normal"><span class="modal-bold">Nacimiento / Edad:</span><br>${newPlayerBornYear} <span>(29)</span></p>
+                                </div>
+                                <div class="modal-league-description">
+                                    <p class="modal-normal">${newClubText}<br>${newLeagueText}</p>
+                                </div>
+                                <div class="modal-links">
+                                    <a class="modal-normal" href="${newPlayerTransfermarkt}" target="_blank">Transfermarkt <span class="link-icon"><img src="icons/foreign.png" alt=""></span></a>
+                                    <a class="modal-normal" href="${newPlayerSofascore}" target="_blank">SofaScore <span class="link-icon"><img src="icons/foreign.png" alt=""></span></a>
+                                </div>
+                                <div class="modal-valored">
+                                    <p class="modal-normal"><span class="modal-bold">Valor de mercado:<br>${newPlayerValored}</span></p>
+                                </div>
+                            </div>
+                            <div class="modal-description-info">
+                                <div class="modal-on-loan">
+                                    <p class="modal-on-loan-text">PRESTADO</p>
+                                </div>
+                                <div class="modal-league-icon">
+                                    <img class="modal-league-icon-photo" src="${newLeagueImage}" alt="">
+                                </div>
+                                <div class="modal-league-nation">
+                                    <img class="modal-league-nation-photo" src="${newLeagueNationImage}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item-inside-container"></div>
+
+                    </div>`
+
+        // Insertando HTML backticks dentro de const item
+        item.innerHTML = playerCardToModal
 
         //item.appendChild(text);
         listVideo.appendChild(item);
@@ -473,7 +588,7 @@ searchInput.addEventListener('input', (event) => {
 // Borrar jugador:
 
 main.addEventListener('click', (event) => {
-    if (event.target.className == 'player-card-options') {
+    if (event.target.className == 'player-card-options ignore-elements') {
         const button = event.target
         const parent = button.parentNode
         parent.remove()
@@ -489,6 +604,24 @@ Sortable.create(listSortable, {
     chosenClass: "chosen",
     ghostClass: "ghost",
     dragClass: "drag",
+    filter: ".ignore-elements",
+    onChoose: () => {
+        const cbox = document.querySelectorAll(".player-card-modal");
+
+        for (let i = 0; i < cbox.length; i++) {
+            //console.log(cbox[i])
+            cbox[i].classList.add('none-class')
+        };
+    },
+    onUnchoose: () => {
+        const cbox = document.querySelectorAll(".player-card-modal");
+
+        for (let i = 0; i < cbox.length; i++) {
+            //console.log(cbox[i])
+            //cbox[i].style.remove(opacity)
+            cbox[i].classList.remove('none-class')
+        };
+    },
     group: {
         name: "players-list"
     },
@@ -522,6 +655,24 @@ Sortable.create(listSortableTwo, {
     chosenClass: "chosen",
     ghostClass: "ghost",
     dragClass: "drag",
+    filter: ".ignore-elements",
+    onChoose: () => {
+        const cbox = document.querySelectorAll(".player-card-modal");
+
+        for (let i = 0; i < cbox.length; i++) {
+            //console.log(cbox[i])
+            cbox[i].classList.add('none-class')
+        };
+    },
+    onUnchoose: () => {
+        const cbox = document.querySelectorAll(".player-card-modal");
+
+        for (let i = 0; i < cbox.length; i++) {
+            //console.log(cbox[i])
+            //cbox[i].style.remove(opacity)
+            cbox[i].classList.remove('none-class')
+        };
+    },
     group: {
         name: "players-list"
     },

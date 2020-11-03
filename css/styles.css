@@ -173,7 +173,8 @@
   justify-content: flex-end;
   align-items: center;
   margin: 0 3rem 0 0;
-  width: 20rem; }
+  width: 20rem;
+  opacity: 0; }
   @media screen and (max-width: 500px) {
     .players-info {
       margin: 0 1rem 0 0; } }
@@ -272,118 +273,144 @@
 
 .player-card {
   height: 8rem;
-  width: 7.5rem;
+  width: 7.68rem;
   background: #F9F4F4;
   margin: .6rem .8rem;
   border-radius: .2rem;
   position: relative;
   cursor: grab; }
 
+.player-card-in-search-modal {
+  height: 8rem;
+  width: 7.68rem;
+  background: #F9F4F4;
+  margin: .3rem .4rem;
+  border-radius: .2rem;
+  position: relative;
+  cursor: grab; }
+
 .player-card-description {
   position: relative;
-  height: 6rem; }
+  height: 6.4rem; }
 
-.league {
+.player-card-info {
   position: absolute;
   top: 0;
-  width: 1.6rem;
-  height: 1.6rem; }
-
-.league-photo {
-  width: 100%;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   height: 100%;
-  margin: 0.1rem 0 0 0.1rem; }
-
-.club {
-  position: absolute;
-  top: 0;
-  left: 5.8rem;
-  width: 1.6rem;
-  height: 1.6rem; }
-
-.club-photo {
-  width: 100%;
-  height: 100%;
-  margin: 0.1rem 0.1rem 0 0; }
+  width: 3rem; }
 
 .main-position {
-  position: absolute;
-  top: 4rem;
-  left: 0.1rem;
-  height: 1rem;
   display: flex;
   justify-content: center;
   align-items: center; }
 
-.main-position-description, .born-year-description, .age-description, .valored-description {
-  -webkit-text-stroke: 0.5px black;
-  color: white;
-  font-size: 0.7rem;
+.main-position-description {
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
   text-align: center; }
 
-.born-year {
-  position: absolute;
-  top: 4rem;
-  left: 5.6rem;
-  height: 1rem;
+/* .league {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.league-photo {
+    width: 100%;
+    height: 100%;
+    margin: 0.1rem 0 0 0.1rem;
+} */
+.nation {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.nation-photo {
+  width: 1.7rem;
+  padding-bottom: .2rem; }
+
+.club {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.club-photo {
+  width: 1.7rem;
+  height: 1.7rem; }
+
+/* .born-year-description, .age-description, .valored-description {
+    -webkit-text-stroke: 0.5px $player-card-info-inside-border;
+    color: $player-card-info-inside-color;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.born-year {
+    position: absolute;
+    top: 4rem;
+    left: 5.6rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .age {
-  position: absolute;
-  top: 3.2rem;
-  left: 6.2rem;
-  height: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+    position: absolute;
+    top: 3.2rem;
+    left: 6.2rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .valored {
-  position: absolute;
-  top: 1.8rem;
-  left: 6rem;
-  height: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
+    position: absolute;
+    top: 1.8rem;
+    left: 6rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 .player-photo-container {
   position: relative;
-  top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   height: 100%;
   width: 100%; }
 
 .player-photo {
-  width: 5rem;
-  height: 6rem;
-  object-fit: cover;
-  transition: transform .2s;
-  /* Animation */ }
-
-.player-photo:hover {
-  transform: scale(1.05);
-  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */ }
-
-.player-on-loan {
-  position: absolute;
-  top: 0.05rem;
-  left: 6.9rem;
-  width: .6rem;
-  height: .6rem;
-  display: flex;
-  justify-content: center;
-  align-content: center; }
-
-.player-on-loan-img {
-  width: 100%;
-  height: 100%;
+  width: 5.34rem;
+  height: 6.4rem;
   object-fit: cover; }
 
+/* .player-on-loan {
+    position: absolute;
+    top: 0.05rem;
+    left: 6.9rem;
+    width: .6rem;
+    height: .6rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.player-on-loan-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
 .player-card-name {
-  height: 2rem;
+  height: 1.6rem;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -408,6 +435,9 @@
 
 .player-card:hover .player-card-options {
   display: flex; }
+
+.player-card:hover .none {
+  display: none; }
 
 .player-card-options {
   display: none;
@@ -437,6 +467,143 @@
 
 .drag {
   opacity: 1; }
+
+.player-card-modal {
+  visibility: hidden;
+  height: 8rem;
+  width: 20rem;
+  background: white;
+  border: black 1.5px solid;
+  border-radius: 10px;
+  z-index: var(--z-modal);
+  position: absolute;
+  left: -75%;
+  margin-top: 1rem;
+  transition: 0s visibility;
+  transition-delay: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  cursor: auto; }
+
+.none-class {
+  display: none; }
+
+.none {
+  display: none; }
+
+.player-card-modal:before {
+  width: 0;
+  height: 0;
+  border-left: .4rem solid transparent;
+  border-right: .4rem solid transparent;
+  border-bottom: .8rem solid black;
+  z-index: var(--z-modal);
+  position: absolute;
+  top: -.81rem;
+  left: 50%;
+  display: block;
+  content: ""; }
+
+.player-card:hover .player-card-modal {
+  visibility: visible;
+  transition-delay: 0s; }
+
+.modal-photo {
+  width: 5.5rem;
+  height: 7rem;
+  margin-left: .5rem;
+  margin-right: .5rem; }
+
+.modal-photo-content {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; }
+
+.modal-description-container {
+  width: 14rem;
+  height: 7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-flow: column;
+  margin-right: .5rem; }
+
+.modal-description-container > * {
+  justify-self: center;
+  align-self: center; }
+
+.modal-normal, .modal-bold {
+  font-size: .63rem;
+  text-align: center;
+  font-family: "Source Sans Pro", sans-serif; }
+
+.modal-bold {
+  font-weight: 700;
+  font-family: "Source Sans Pro", sans-serif; }
+
+.link-icon {
+  width: .6rem;
+  height: .6rem; }
+
+.link-icon > * {
+  width: .6rem;
+  height: .6rem; }
+
+.modal-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+.modal-on-loan {
+  position: absolute;
+  top: .8rem;
+  left: 19.5rem;
+  background-color: #00BCD4;
+  width: 4rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .4rem;
+  border: 1px solid black; }
+
+.modal-on-loan-text {
+  font-size: .63rem; }
+
+.modal-league-icon {
+  position: absolute;
+  top: 2.6rem;
+  left: 19.5rem;
+  background: #D0D0D0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.modal-league-nation {
+  position: absolute;
+  top: 5rem;
+  left: 19.5rem;
+  background: #D0D0D0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.modal-league-icon-photo {
+  height: 1.5rem; }
+
+.modal-league-nation-photo {
+  width: 1.5rem; }
 
 .modal-bg {
   position: fixed;
@@ -473,7 +640,8 @@
       margin: 0 2rem; } }
 
 .search {
-  width: 100%; }
+  width: 100%;
+  padding: .5rem; }
 
 .close-modal {
   /*     position: absolute;
@@ -493,7 +661,10 @@
   height: 100%;
   overflow: auto;
   grid-column-start: 1;
-  grid-column-end: 3; }
+  grid-column-end: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start; }
 
 .list-group-item {
   padding: .2rem; }
@@ -502,7 +673,7 @@
 
 .list-group-item {
   height: 8rem;
-  width: 7.5rem;
+  width: 7.68rem;
   background: #F9F4F4;
   margin: .3rem .4rem;
   border-radius: .2rem;
@@ -515,7 +686,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  cursor: pointer; }
 
 .modal-player-card-description {
   position: relative;

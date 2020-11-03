@@ -24,7 +24,7 @@
     $player-card-color:                 #F9F4F4;
     $player-card-name-color:            black;
     $player-card-name-hover-color:      #252727;
-    $player-card-info-inside-color:     white;
+    $player-card-info-inside-color:     black;
     $player-card-info-inside-border:    black;
 
 // Variables de apilamiento (z-index)
@@ -43,6 +43,7 @@
 // Fuentes
     $roboto-family: 'Roboto', Arial, Helvetica, sans-serif;
     $pridi-family: 'Pridi', Arial, Helvetica, sans-serif;
+    $source-sans-pro-family: 'Source Sans Pro', sans-serif;
 
 // Breakpoints
 $breakpoints :(
