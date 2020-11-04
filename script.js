@@ -1,19 +1,27 @@
-// Próximas funciones
-// Borrar una sección. LISTO
-// Agregar jugador. 
-// Borrar jugador.
-// Que se pueda agregar una sección encima o debajo. 
-// Que blank-player no se pueda borrar, asi nunca va haber una sección vacia. 
-// Crear página que se muestre cuando hay 0 secciones. LISTO
-// Resolver el espacio vacio entre secciones y footer. LISTO
-//// Probablemente lo mejor es que haya un fondo piola. LISTO
-// Crear footer. LISTO
-// Mover jugadores: cambiar orden dentro de la sección. Y mover a otra sección. 
-// Otra cosa que me faltó, es que no se pueda repetir el nombre de las secciones, no puede haber dos arqueros y arqueros.
-///sigue anterior: También faltó un máximo de caracteres que se pueda escribir. 
+// INDICE
+    // Variables globales
+    // Variables globales para search-modal
+    // Agregar sección
+    // Borrar sección
+    // Cambiar funcionamiento de main, conforme a la cantidad de secciones creadas.  
+    // Mostrar diseño para cuando no hay ninguna sección creada. 
+    // Agregar jugador
+        // Mostrar search-modal
+        // Cerrar search-modal con tecla Esc
+        // Detectar en que jugador hice click e insertarlo en sección seleccionada
+        // Cerrar search-modal con click en cruz
+        // Función para crear la lista de jugadores encontrados (setList)
+        // clearList
+        // setNoResults
+        // getRelevancy
+        //  Función del input del search-modal
+            // filtrado por nombre (le entrega el parametro a setList, para que este pueda crear la lista)
+            // ordenado por relevancia (mediante getRelevancy, que recibe parametros)
+            // sino hay nada escrito en el input lleva a cabo clearList()
+        // Borrar jugador
+        // SortableJS
 
-//IMPORTANTES
-// Agregar que cuando posiciones el mouse encima de los buttons-to-mobile, apareza un mensajito de lo que hace. 
+// Variables globales
 
 const body = document.getElementById('body')
 const main = document.getElementById('main')
@@ -28,16 +36,20 @@ let closeModal = document.querySelector('.close-modal')
 
 // Agregar sección
 
-// Problema: Terminé utilizando onclick en html, en vez de un addEventListener u otro en js. No encontré ninguna forma de realizar el proceso mediante js. getElementByClassName no funcionó. Y si funcionaba, terminaba no funcionando en los nuevos. 
-
-// Agregar modal. En el que se preguntará, Agregar encima o agregar debajo de que section? Si no hay ninguna section se hace el appendChild de siempre. 
-// El modal puede que se haga con condicionales. 
-
 const addSectionClick = () => {
-    console.log('Hola mundo')
+    console.log('Agregaste una sección')
 
+    // Pregunta nombre de la sección y lo guarda en variable
+        // También posteriormente, mediante innerHTML, la variable se inserta dentro del h3, titulo de la sección, ejemplo: "MEDIOCAMPISTAS"
     let sectionTitlePositions = prompt("Titulo de la Sección (Ejemplo: Arqueros)").toUpperCase()
 
+    // ESTO SERÁ BORRADO, LUEGO DE MEJORAR LA FUNCIÓN DE BORRAR SECCIÓN
+    // Agarra el nombre de la sección
+        // Lo pasa a minuscula
+        // Reemplaza los espacios por guiones
+        // Le agrega -delete y -delete-to-mobile
+        // Luego, mediante el innerHTML, se le agrega estas variables como id, al boton delete-section
+            // Ya que después la forma de eliminar las secciones es poniendo en un prompt el nombre de la sección
     let sectionTitlePositionsDelete = sectionTitlePositions.toLowerCase().replace(/[" "]/gi, "-").concat("-delete")
     let sectionTitlePositionsDeleteToMobile = sectionTitlePositions.toLowerCase().replace(/[" "]/gi, "-").concat("-delete-to-mobile")
 
@@ -106,34 +118,44 @@ const addSectionClick = () => {
             </div>
         </div>`
 
+    // Se crea elemento section en el DOM
+        // Se le agrega un id al elemento section, ejemplo: mediocampistas
+        // Se le agrega la clase example, más adelante será explicado su cometido
     const newElement = document.createElement('section')
     const newElementID = newElement.id = sectionTitlePositions.toLowerCase().replace(/[" "]/gi, "-")
     newElement.classList.add('example')
 
+    // Se agrega el elemento section mediante appendChild al main, por lo tanto aparecerá abajo de todas las secciones creadas. 
+        // Al elemento section, se le agrega el HTML mediante innerHTML
     main.appendChild(newElement)
     newElement.innerHTML = playerDescription + playerDescriptionTwo
 
+    // Se agrega la sección creada a un array de Secciones. 
+        // Posteriormente será utilizado para la función de borrar sección. 
+        // Para la función de borrar sección quedara inservible, pero se puede usar para la función de sortable.     
     arrayOfSections.push(newElementID)
     console.log(arrayOfSections)
 
+    // Imprime en consola el alto de todas las secciones creadas sumadas. 
+    // Imprime en consola el alto del contenedor de las secciones. 
+        // El contenedor de las secciones tiene un alto predeterminado de 1254px, si todas las secciones sumadas dan más de 1254 px, entonces el contenedor deja de tener un alto predeterminado y se ajusta al alto de todas las secciones sumadas. 
     console.log(getComputedStyle(mainBehind).height)
     console.log(getComputedStyle(mainContainerBehind).height)
-
+    // Lleva a cabo la función explicada anteriormente. 
+        // Cada vez que se agrega una función se ejecuta. 
+        // Si la sumatoria de las secciones creadas es mayor de 1254px, le saca una class y le agrega otra. 
     changeHeight()
 
+    // matches podría ser sectionsCreated
+    // matches = todas las secciones creadas
+    // Esto lo que hace es actualizar matches. 
+    // Luego una función se ocupa, de que si no hay matches, agrega una class que hace que se muestre una boton para Agregar sección, cuando no hay ninguna sección en el sitio.
     matches = document.querySelectorAll('.example');
-
+    // Se lleva a cabo la función explicada anteriormente. Sino hay matches, se agrega una class y se muestra un boton para Agregar sección. 
     noSectionsCreatedShow()
 }
 
 // Borrar sección
-
-// Problema: Se debería poder elegir que sección eliminar dando en el boton correspondiente de cada sección. 
-// La otra opcion es que al usuario le aparezca un modal y ahi elija que sección eliminar, pero sin escribir. 
-
-// La opción con modal y usar condicionales if es la mejor para mi. 
-
-// IMPORTANTE: Usar querySelector para cuando resuelva los problemas de Agregar sección y Borrar sección.
 
 const deleteSectionClick = () => {
     whatIWantToRemove = prompt("Elegí uno de estas opciones: " + arrayOfSections).toLowerCase()
@@ -148,8 +170,9 @@ const deleteSectionClick = () => {
 
     noSectionsCreatedShow()
 }
+// Borrar sección lo haría desde cero. La borraría todo. Pero es importante que en la nueva sección pongamos changeHeight, matches y noSectionsCreatedShow. 
 
-// PRINCIPAL TAREA DE SABADO: Hacer lo que va a ir detrás de las secciones, ese background. Lo que se va a mostrar cuando no haya ninguna sección. Etc. 
+// Cambiar funcionamiento de main, conforme a la cantidad de secciones creadas.  
 
 let mainBehind = document.getElementById('main')
 let mainContainerBehind = document.getElementById('main-container')
@@ -174,7 +197,11 @@ const changeHeight = () => {
 
 addEventListener('resize', changeHeight)
 
+// Mostrar diseño para cuando no hay ninguna sección creada. 
+
 // Lo que haremos ahora, es que sino aparece ningun elemento con la clase example, se le asignará la clase no-sections-created-no-show-it a id no-sections-created
+// Elemento con la clase example = seccion creada
+// Se le asignará una clase para que se muestre un diseño que solo debe mostrarse cuando no haya ninguna seccion creda. 
 
 let matches = document.querySelectorAll('.example');
 
@@ -191,89 +218,9 @@ const noSectionsCreatedShow = () => {
     }
 }
 
-// QUERYSELECTOR ERA LA CLAVE DE LOS BOTONES, PARA NO USAR ONCLICK
-var el = document.querySelector(".add-player");
-console.log(el)
-el.addEventListener('click',() => {
-    console.log('funciona tio')
-})
+// Acá habían cosas sobre querySelector y querySelectorAll. Si en algun momento hago repaso de qué aprendí escribiendo este proyecto, agregarlos. 
 
-let testingTT = document.querySelectorAll('.add-player')
-
-let proba = document.getElementsByClassName('add-player')
-
-// Agregar jugador
-
-/// La idea sería que al tocar el boton aparece el blank. 
-/// El blank no se puede borar, solo reemplazar. 
-/// Paso 1: Cuando tocas el boton agregar jugador, que se agregue un blank en la section-players.
-/// Paso 2: Cuando tocas el blank, que se pueda reemplazar. Esto es fácil dentro de todo. 
-
-// Al crear un jugador
-/// Se crea una clase para cada jugador
-/// Y se crea una funcion para cada clase
-/// Y se le debe aplicar la clase unica al boton. 
-/// O sea, mediante un ciclo, se crea una clase para el boton de "ese" jugador 
-//          y también se crea una funcion especifica para "esa" clase de "ese jugador".
-
-const titleT = document.querySelector(".add-player")
-
-const holaMundoT = e => console.log(e.target.classList.value)
-const holaMundoTe = e => console.log(e.target.classList)
-
-titleT.addEventListener('click', e => {
-    holaMundoT(e)
-    holaMundoTe(e)
-})
-
-// Lo que a mi se me ocurre:
-//      Tenemos cada boton con un class personalizado, cada boton tiene class=francoarmani, class=estebanandrada, etc. ESTO LO TENGO QUE CREAR. 
-//      Utilizamos lo de "e" para imprimir un string, digamos que damos click en el boton de Armani, hacemos todo para que 
-//              imprima en el string francoarmani y eso se guarde en una variable. LINEA 209.
-//      Y después hacemos que el elemento que tiene la class francoarmani se elimine. LINEA 231
-
-/* <p id ="remove" style = "color: green; font-size: 24px; font-weight: bold;"> 
- on click remove this section
-</p> 
-
-<button onClick = "remove()"> 
-   click here 
-</button> 
-var htmlElement = document.getElementById('remove'); //use getElemeyId or getElementsByClassName According to your need;
-    
-function remove() { 
-  htmlElement.remove();
-} */
-
-// OBJETIVO DIA DOMINGO / DIA LUNES
-//      Entender lo de e. Básicamente se explica en Los Eventos en el curso de JS DOM. Repasar el video sería una buena idea. 
-
-
-main.addEventListener('click', (event) => {
-    if (event.target.className == 'add-name') {
-        console.log('tocaste un nombre')
-        const name = event.target
-        const nameContainer = name.parentNode
-        const divName = nameContainer.parentNode
-        const playerCard = divName.parentNode
-        // aparece modal con buscador y vista previa
-        // elegimos jugador del modal
-        // se aplican cambios al html segun el jugador que elijamos
-        modalBg.classList.add('modal-bg-active')
-    }
-    if (event.target.className == 'add-lastname') {
-        console.log('tocaste un apellido')
-        const lastname = event.target
-        const name = lastname.parentNode
-        const nameContainer = name.parentNode
-        const divName = nameContainer.parentNode
-        const playerCard = divName.parentNode
-        // aparece modal con buscador y vista previa
-        // elegimos jugador del modal
-        // se aplican cambios al html segun el jugador que elijamos
-        modalBg.classList.add('modal-bg-active')
-    } 
-})
+// Agregar jugador 
 
 let addPlayerButton
 let addButtonsContainer
@@ -281,8 +228,14 @@ let sectionTitle
 let sectionPlayers
 let playerSelected
 
+const searcher = document.getElementById('search')
+
+// Cuando hago click en un elemento que tenga la class add-player pasa:
+    // Se asigna valor a las variables para luego usarlas en la inyección del jugador a la sección elegida. 
+    // Se muestra el search-modal
+    // Se le hace focus al input del search-modal
+
 main.addEventListener('click', (event) => {
-    const searcher = document.getElementById('search')
     if (event.target.className == 'add-player') {
         console.log('tocaste boton agregar jugador')
         addPlayerButton = event.target
@@ -292,20 +245,24 @@ main.addEventListener('click', (event) => {
         modalBg.classList.add('modal-bg-active')
         searcher.focus()
     }
-    document.addEventListener('keydown', function(event){
-        if(event.key === "Escape"){
-            modalBg.classList.remove('modal-bg-active')
-            clearList()
-            searcher.value = ""
-        }
-    });
 })
+
+// Función para que cuando el search-modal está visible, apretando la tecla Escape se ponga en modo no visible. 
+    // Además hace otras cosas. Lo cierra. Pone la lista vacia. Borra lo que había escrito en input. 
+
+document.addEventListener('keydown', function(event){
+    if(event.key === "Escape"){
+        modalBg.classList.remove('modal-bg-active')
+        clearList()
+        searcher.value = ""
+    }
+});
 
 // Detectar en qué jugador hice el click
 // Insertar jugador seleccionado en la sección que hicimos click
 
 // Problema: Hago click en un list-group-item y dentro tiene imagenes y otros div, por lo tanto, tenía que crear una función diferente para cada div y cada elemento dentro de list-group-item.
-// Solución: Creamos list-group-item-inside-container, un div con z index superior, para cada que hagamos click sea sobre ese div. 
+// Solución: Creamos list-group-item-inside-container, un div con z index superior, para cada vez que hagamos click sea sobre ese div. 
 
 modalBg.addEventListener('click', (event) => {
     const searcher = document.getElementById('search')
@@ -328,31 +285,7 @@ modalBg.addEventListener('click', (event) => {
     }
 })
 
-
-// Una idea, pero no funcionó. 
-/* modalBg.addEventListener('click', () => {
-    const cbox = document.querySelectorAll(".list-group-item");
-    console.log(cbox)
-    for (let i = 0; i < cbox.length; i++) {
-        console.log(i)
-        cbox[i].addEventListener("click", (event) => {
-        console.log(event.target)
-        });
-    }
-}) */
-
-
-// Función para que aparezca modal de buscador de jugadores
-// Declaradas arriba por problemas de leer variables globales
-/* let modalBtn
-let modalBg = document.getElementById('modal-bg')
-let closeModal = document.querySelector('.close-modal') */
-
-/* modalBg.addEventListener('click', (event) => {
-    if (event.target.className == 'close-modal') {
-        console.log('bien')
-    }
-}) */
+// Función para cerrar el modal haciendo click en la cruz. 
 
 closeModal.addEventListener('click', () => {
     console.log('clase active de modal removida')
@@ -360,94 +293,25 @@ closeModal.addEventListener('click', () => {
 })
 
 // Video buscador:
+// Funciones que trabajan en conjunto para hacer funcional el buscador. 
 
 // después cambiar nombre de listVideo
 const listVideo = document.getElementById('list')
 
-/* function setList(group) {
-    clearList();
-    for (let person of group) {
-        const item = document.createElement('li');
-        item.classList.add('list-group-item');
-        const text = document.createTextNode(person.name);
-        console.log(document.createTextNode(person.club));
-        item.appendChild(text);
-        listVideo.appendChild(item);
-    }
-    if (group.length === 0) {
-        setNoResults();
-    }
-} */
+// Acá antes, estaba la función de setList creada por el que hizo el video en el que aprendí a crear un buscador. 
+
+// Función para crear la lista de jugadores encontrados 
 
 function setList(group) {
     clearList();
     for (let person of group) {
         // Creando cada elemento HTML
         const item = document.createElement('div');
-        /* const itemContainerInside = document.createElement('div');
-        const firstDiv = document.createElement('div')
-        const secondDiv = document.createElement('div')
-        const leagueFirstDiv = document.createElement('div')
-            const imgLeagueFirstDiv = document.createElement('img')
-        const clubFirstDiv = document.createElement('div')
-            const imgClubFirstDiv = document.createElement('img')
-        const playerFirstDiv = document.createElement('div')
-            const imgPlayerFirstDiv = document.createElement('img')
-        const nameSecondDiv = document.createElement('div')
-            const containerNameSecondDiv = document.createElement('a')
-            const firstNameSecondDiv = document.createElement('p')
-            const secondNameSecondDiv = document.createElement('span') */
-        
-        
-        // Arranque a crearlo para la nueva versión de la player card, pero voy usar backticks. 
-        /* // Creando cada elemento HTML (nueva versión de la player-card)
-        const item = document.createElement('div') // player-card DIV
-            const playerCardDescription = document.createElement('div') */
-
-
-        /* // Agregando las clases a cada elemento HTML
-        item.classList.add('list-group-item');
-        firstDiv.classList.add('modal-player-card-description');
-        secondDiv.classList.add('modal-player-card-name');
-        itemContainerInside.classList.add('list-group-item-inside-container');
-        leagueFirstDiv.classList.add('modal-league');
-        imgLeagueFirstDiv.classList.add('modal-league-photo');
-        clubFirstDiv.classList.add('modal-club');
-        imgClubFirstDiv.classList.add('modal-club-photo');
-        playerFirstDiv.classList.add('modal-player-photo-container');
-        imgPlayerFirstDiv.classList.add('modal-player-photo');
-        containerNameSecondDiv.classList.add('modal-player-card-name-link')
-        firstNameSecondDiv.classList.add('modal-name')
-        secondNameSecondDiv.classList.add('modal-lastname')
-        // Creando contenido para luego meterlo dentro de cada elemento HTML
-        const text = document.createTextNode(person.name);
-        const leagueImage = document.createTextNode(person.league);
-        const clubImage = document.createTextNode(person.club);
-        const playerImage = document.createTextNode(person.playerPhoto);
-        const playerFirstname = document.createTextNode(person.firstName + " ");
-        const playerLastname = document.createTextNode(person.lastName);
-        // Insertando contenido dentro de los elementos HTML
-        secondNameSecondDiv.appendChild(playerLastname)
-        firstNameSecondDiv.appendChild(playerFirstname)
-        imgPlayerFirstDiv.src = playerImage.wholeText
-        imgClubFirstDiv.src = clubImage.wholeText
-        imgLeagueFirstDiv.src = leagueImage.wholeText 
-        // Metiendo cada img en cada div
-        leagueFirstDiv.appendChild(imgLeagueFirstDiv)
-        clubFirstDiv.appendChild(imgClubFirstDiv)
-        playerFirstDiv.appendChild(imgPlayerFirstDiv)
-        // Metiendo los nombres en el container del nombre del jugador
-        firstNameSecondDiv.appendChild(secondNameSecondDiv)
-        containerNameSecondDiv.appendChild(firstNameSecondDiv)
-        // Metiendo cada div en first o second div. 
-        firstDiv.appendChild(leagueFirstDiv)
-        firstDiv.appendChild(clubFirstDiv)
-        firstDiv.appendChild(playerFirstDiv)
-        secondDiv.appendChild(containerNameSecondDiv)
-        // Metiendo first y second div en item. 
-        item.appendChild(firstDiv)
-        item.appendChild(secondDiv)
-        item.appendChild(itemContainerInside) */
+        // Acá estaba la creación de cada elemento HTML mediante createElement, pero decidi hacerlo con backticks. 
+        // Acá estaba todas las clases que añadimos con classList.add a cada elemento HTML, agregado anteriormente.
+        // Acá estaba la creación del contenido. Mediante document.createTextNode, agarrabamos un dato desde person de un array y lo asignabamos a una variable.  
+        // Acá estaba la inserción de contenido a cada elemento HTML mediante appendChild o elemento.src + wholeText, para resolver los problemas de las imagenes. 
+        // Acá estaba la inserción de cada elemento HTML dentro de otro, para construir código html usando appendChild y otras. 
 
         // NUEVA VERSIÓN: Creando contenido para luego meterlo dentro de cada elemento HTML 
         const text = document.createTextNode(person.name);
@@ -536,7 +400,7 @@ function setList(group) {
         // Insertando HTML backticks dentro de const item
         item.innerHTML = playerCardToModal
 
-        //item.appendChild(text);
+        // Insertando todos los resultados de la busqueda. 
         listVideo.appendChild(item);
     }
     if (group.length === 0) {
@@ -676,50 +540,37 @@ Sortable.create(listSortableTwo, {
     group: {
         name: "players-list"
     },
-/*     store: {
-        // Para guardar el orden de la lista en memoria. 
-        set: (sortable) => {
-            const orderOfTheList = sortable.toArray()
-            console.log(orderOfTheList)
-            localStorage.setItem(sortable.options.group.name, orderOfTheList.join('|'))
-        },
-
-        // Obtenemos el orden de la lista al cargar la página
-        get: (sortable) => {
-            const orderObtained = localStorage.getItem(sortable.options.group.name)
-            console.log(orderObtained)
-            return orderObtained ? orderObtained.split('|') : []
-        }
-    }, */
-/*     onUnchoose: () => {
-        const htmlContents = document.getElementById('main');
-        const htmlContentsInner = htmlContents.innerHTML;
-        const saving = localStorage.setItem('myBook', JSON.stringify(htmlContentsInner));
-        console.log(htmlContentsInner)
-    } */
 })
 
+const culos = document.querySelectorAll('.section-players')
 
+Sortable.create(culos[0], {
+    animation: 300,
+    chosenClass: "chosen",
+    ghostClass: "ghost",
+    dragClass: "drag",
+    filter: ".ignore-elements",
+    onChoose: () => {
+        const cbox = document.querySelectorAll(".player-card-modal");
 
-/* body.addEventListener('click', () => {
-    const htmlContents = document.getElementById('main');
-    const htmlContentsInner = htmlContents.innerHTML;
-    const saving = localStorage.setItem('myBook', JSON.stringify(htmlContentsInner));
-    console.log(htmlContentsInner)
+        for (let i = 0; i < cbox.length; i++) {
+            //console.log(cbox[i])
+            cbox[i].classList.add('none-class')
+        };
+    },
+    onUnchoose: () => {
+        const cbox = document.querySelectorAll(".player-card-modal");
+
+        for (let i = 0; i < cbox.length; i++) {
+            //console.log(cbox[i])
+            //cbox[i].style.remove(opacity)
+            cbox[i].classList.remove('none-class')
+        };
+    },
+    group: {
+        name: "players-list"
+    },
 })
-
-const extracting = localStorage.getItem('myBook')
-const extractingTo = JSON.parse(extracting)
-
-const footer = document.getElementById('footer')
-
-footer.addEventListener('click', () => {
-    const newElement = document.createElement('section') 
-    main.appendChild(newElement)
-    newElement.innerHTML = extractingTo
-    console.log('pipi')
-}) */
-
 
 // Para mover las secciones.
 /* Sortable.create(main, {
