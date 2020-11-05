@@ -5,3 +5,14 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.back-red {
+    display: none;
+}
+
+.back-red-show {
+    display: inline;
+    background-color: red;
+    height: 1rem;
+    width: 1rem;
+}

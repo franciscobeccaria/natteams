@@ -1,8 +1,10 @@
 // INDICE
     // Variables globales
     // Variables globales para search-modal
+    // Agregar la primera sección
     // Agregar sección
     // Borrar sección
+    // Sección players vacia
     // Cambiar funcionamiento de main, conforme a la cantidad de secciones creadas.  
     // Mostrar diseño para cuando no hay ninguna sección creada. 
     // Agregar jugador
@@ -33,6 +35,83 @@ const arrayOfSections = ['arqueros', ]
 let modalBtn
 let modalBg = document.getElementById('modal-bg')
 let closeModal = document.querySelector('.close-modal')
+
+// Agregar la primera sección (es para si no hay creada ninguna sección antes)
+
+const addFirstSectionClick = () => {
+    let pageTitleFirst = prompt("Titulo de la Plantilla (Ejemplo: River Plate 2018)")
+    let pageTitleDescriptionFirst = prompt("Agrega una descripción de la plantilla")
+    let sectionTitlePositions = prompt("Titulo de la Sección (Ejemplo: Arqueros)").toUpperCase()
+    let sectionTitlePositionsDelete = sectionTitlePositions.toLowerCase().replace(/[" "]/gi, "-").concat("-delete")
+    let sectionTitlePositionsDeleteToMobile = sectionTitlePositions.toLowerCase().replace(/[" "]/gi, "-").concat("-delete-to-mobile")
+
+    const pageTitleContent = `
+                <h1 class="page-title">${pageTitleFirst}</h1>
+                <p class="page-description">${pageTitleDescriptionFirst}</p>
+    `
+
+    const playerDescription =`
+    <section class="section-title">
+    <div class="add-buttons">
+        <button class="add-section" id="add-section" onclick="addSectionClick()">Agregar sección</button>
+        <button class="add-player">Agregar jugador</button>
+        <button class="delete-section" id="${sectionTitlePositionsDelete}" onclick="deleteSectionClick()">Borrar sección</button>
+    </div>
+    <div class="add-buttons-to-mobile">
+        <div class="add-section-to-mobile">
+            <a class="add-section-icon-container" id="add-section-to-mobile" href="#" onclick="addSectionClick()"><img class="add-section-icon" src="icons/add.png" alt=""></a>
+        </div>
+        <div class="add-player-to-mobile">
+            <a class="add-player-icon-container" href="#"><img class="add-player-icon" src="icons/add-friend.png" alt=""></a>
+        </div>
+        <div class="delete-section-to-mobile">
+            <a class="delete-section-icon-container" id="${sectionTitlePositionsDeleteToMobile}" href="" onclick="deleteSectionClick()"><img class="delete-section-icon" src="icons/add-friend.png" alt=""></a>
+        </div>
+    </div>
+    <h3 class="section-title-positions">${sectionTitlePositions}</h3>
+    <div class="players-info">
+        <i class="fas fa-grip-lines"></i>
+        <div class="on-loan">
+            <div class="on-loan-icon-container"><img class="on-loan-icon" src="icons/starred.png" alt=""></div>
+            <p class="on-loan-p">Prestado</p>
+        </div>
+    </div>
+    </section>
+    `
+
+    const playerDescriptionTwo = `
+    <section class="section-players" id="${sectionTitlePositions.toLowerCase()+"-list"}">
+            </section>`
+
+    const newPageTitle = document.createElement('section')
+    const newPageTitleID = newPageTitle.id = "page-title"
+    newPageTitle.classList.add('page-title-container')
+
+    main.appendChild(newPageTitle)
+    newPageTitle.innerHTML = pageTitleContent
+
+    pageTitle = document.getElementById('page-title')
+
+    const newElement = document.createElement('section')
+    const newElementID = newElement.id = sectionTitlePositions.toLowerCase().replace(/[" "]/gi, "-")
+    newElement.classList.add('example')
+
+    main.appendChild(newElement)
+    newElement.innerHTML = playerDescription + playerDescriptionTwo
+    
+    arrayOfSections.push(newElementID)
+    console.log(arrayOfSections)
+        
+    changeHeight()
+
+    matches = document.querySelectorAll('.example');
+
+    noSectionsCreatedShow()
+
+    updateAllSectionPlayers()
+
+    verifySectionPlayersChild()
+}
 
 // Agregar sección
 
@@ -73,6 +152,7 @@ const addSectionClick = () => {
     </div>
     <h3 class="section-title-positions">${sectionTitlePositions}</h3>
     <div class="players-info">
+        <i class="fas fa-grip-lines"></i>
         <div class="on-loan">
             <div class="on-loan-icon-container"><img class="on-loan-icon" src="icons/starred.png" alt=""></div>
             <p class="on-loan-p">Prestado</p>
@@ -83,40 +163,7 @@ const addSectionClick = () => {
 
     const playerDescriptionTwo = `
     <section class="section-players" id="${sectionTitlePositions.toLowerCase()+"-list"}">
-    <div class="player-card">
-            <div class="player-card-description">
-                <div class="league">
-                    <img class="league-photo" src="img/leagues/total-blank.png" alt="">
-                </div>
-                <div class="club">
-                    <img class="club-photo" src="img/clubs/total-blank.png" alt="">
-                </div>
-                <div class="main-position">
-                    <p class="main-position-description"><br></p>
-                </div>
-                <div class="valored">
-                    <p class="valored-description"></p>
-                </div>
-                <div class="age">
-                    <p class="age-description"></p>
-                </div>
-                <div class="born-year">
-                    <p class="born-year-description"></p>
-                </div>
-                <div class="player-photo-container">
-                    <img class="player-photo" src="img/players/blank.png" alt="">
-                </div>
-                <div class="player-on-loan">
-                    <img class="player-on-loan-img" src="icons/total-blank.png" alt="">
-                </div>
-            </div>
-            <div class="player-card-name">
-                <a class="player-card-name-link" href="#"><p class="add-name"><span class="add-lastname">AGREGAR JUGADOR</span></p></a>
-            </div>
-            <div class="player-card-options">
-            <img src="" alt="">
-            </div>
-        </div>`
+        </section>`
 
     // Se crea elemento section en el DOM
         // Se le agrega un id al elemento section, ejemplo: mediocampistas
@@ -153,24 +200,60 @@ const addSectionClick = () => {
     matches = document.querySelectorAll('.example');
     // Se lleva a cabo la función explicada anteriormente. Sino hay matches, se agrega una class y se muestra un boton para Agregar sección. 
     noSectionsCreatedShow()
+
+    updateAllSectionPlayers()
+
+    verifySectionPlayersChild()
 }
 
 // Borrar sección
+main.addEventListener('click', (event) => {
+    if (event.target.className == 'delete-section' || event.target.className == 'delete-section-to-mobile') {
+        const deleteButton = event.target
+        const sectionToDelete = deleteButton.parentNode.parentNode.parentNode
+        sectionToDelete.remove()
 
-const deleteSectionClick = () => {
-    whatIWantToRemove = prompt("Elegí uno de estas opciones: " + arrayOfSections).toLowerCase()
-    console.log(whatIWantToRemove)
-    const myDiv = document.getElementById(whatIWantToRemove)
-    const parent = myDiv.parentNode
-    parent.removeChild(myDiv)
+        changeHeight()
 
-    changeHeight()
+        matches = document.querySelectorAll('.example');
+    
+        noSectionsCreatedShow()
 
-    matches = document.querySelectorAll('.example');
+        updateAllSectionPlayers()
 
-    noSectionsCreatedShow()
-}
-// Borrar sección lo haría desde cero. La borraría todo. Pero es importante que en la nueva sección pongamos changeHeight, matches y noSectionsCreatedShow. 
+        verifySectionPlayersChild()
+    }
+    if (event.target.className == 'delete-section-icon-container') {
+        const deleteButtonChild = event.target
+        const sectionToDelete = deleteButtonChild.parentNode.parentNode.parentNode.parentNode
+        sectionToDelete.remove()
+
+        changeHeight()
+
+        matches = document.querySelectorAll('.example');
+    
+        noSectionsCreatedShow()
+
+        updateAllSectionPlayers()
+
+        verifySectionPlayersChild()
+    }
+    if (event.target.className == 'delete-section-icon') {
+        const deleteButtonGrandchild = event.target
+        const sectionToDelete = deleteButtonGrandchild.parentNode.parentNode.parentNode.parentNode.parentNode
+        sectionToDelete.remove()
+
+        changeHeight()
+
+        matches = document.querySelectorAll('.example');
+    
+        noSectionsCreatedShow()
+
+        updateAllSectionPlayers()
+
+        verifySectionPlayersChild()
+    }
+})
 
 // Cambiar funcionamiento de main, conforme a la cantidad de secciones creadas.  
 
@@ -207,6 +290,8 @@ let matches = document.querySelectorAll('.example');
 
 let noSectionsCreatedId = document.getElementById('no-sections-created')
 
+let pageTitle = document.getElementById('page-title')
+
 const noSectionsCreatedShow = () => {
     if (matches.length > 0) {
         noSectionsCreatedId.classList.remove('no-sections-created');
@@ -215,6 +300,7 @@ const noSectionsCreatedShow = () => {
     else {
         noSectionsCreatedId.classList.add('no-sections-created');
         noSectionsCreatedId.classList.remove('no-sections-created-no-show-it');
+        pageTitle.remove()
     }
 }
 
@@ -282,6 +368,8 @@ modalBg.addEventListener('click', (event) => {
         modalBg.classList.remove('modal-bg-active')
         clearList()
         searcher.value = ""
+
+        verifySectionPlayersChild()
     }
 })
 
@@ -456,12 +544,34 @@ main.addEventListener('click', (event) => {
         const button = event.target
         const parent = button.parentNode
         parent.remove()
+
+        verifySectionPlayersChild()
     }
 })
 
+// Sección players vacia:
+    // Si la sección players está vacia aparecerá el fondo con un height de 10 rem. 
+    // Si la sección players no está vacia el height del fondo se adaptará a su contenido. 
+
+function verifySectionPlayersChild() {
+    const allSectionPlayers = document.querySelectorAll(".section-players");
+    console.log('anda')
+    for (let index = 0; index < allSectionPlayers.length; index++) {
+        const childs = allSectionPlayers[index].childNodes
+        console.log(childs)
+        console.log(childs.length)
+        if(childs.length < 2) {
+            allSectionPlayers[index].style.height = '10rem'
+        }
+        else {
+            allSectionPlayers[index].style.height = 'auto'
+        }
+    }
+}
+
 // SORTABLE
 
-const listSortable = document.getElementById('section-players')
+/* const listSortable = document.getElementById('section-players')
 
 Sortable.create(listSortable, {
     animation: 300,
@@ -488,7 +598,7 @@ Sortable.create(listSortable, {
     },
     group: {
         name: "players-list"
-    },
+    }, */
 /*     store: {
         // Para guardar el orden de la lista en memoria. 
         set: (sortable) => {
@@ -510,9 +620,9 @@ Sortable.create(listSortable, {
         const saving = localStorage.setItem('myBook', JSON.stringify(htmlContentsInner));
         console.log(htmlContentsInner)
     } */
-})
+//})
 
-const listSortableTwo = document.getElementById('section-players-two')
+/* const listSortableTwo = document.getElementById('section-players-two')
 
 Sortable.create(listSortableTwo, {
     animation: 300,
@@ -540,48 +650,60 @@ Sortable.create(listSortableTwo, {
     group: {
         name: "players-list"
     },
-})
+}) */
 
-const culos = document.querySelectorAll('.section-players')
+function updateAllSectionPlayers() {
+    const allSectionPlayers = document.querySelectorAll(".section-players");
+    console.log('anda')
+    for (let index = 0; index < allSectionPlayers.length; index++) {
+        //AllSectionPlayers[i].classList.add('none-class')
+        console.log(allSectionPlayers[index])
+        Sortable.create(allSectionPlayers[index], {
+            animation: 300,
+            chosenClass: "chosen",
+            ghostClass: "ghost",
+            dragClass: "drag",
+            filter: ".ignore-elements",
+            onChoose: () => {
+                const cbox = document.querySelectorAll(".player-card-modal");
+        
+                for (let i = 0; i < cbox.length; i++) {
+                    //console.log(cbox[i])
+                    cbox[i].classList.add('none-class')
+                };
+                verifySectionPlayersChild()
+            },
+            onUnchoose: () => {
+                const cbox = document.querySelectorAll(".player-card-modal");
+        
+                for (let i = 0; i < cbox.length; i++) {
+                    //console.log(cbox[i])
+                    //cbox[i].style.remove(opacity)
+                    cbox[i].classList.remove('none-class')
+                };
+                verifySectionPlayersChild()
+            },
+            group: {
+                name: "players-list"
+            },
+        })
+    }
+}
 
-Sortable.create(culos[0], {
-    animation: 300,
-    chosenClass: "chosen",
-    ghostClass: "ghost",
-    dragClass: "drag",
-    filter: ".ignore-elements",
-    onChoose: () => {
-        const cbox = document.querySelectorAll(".player-card-modal");
-
-        for (let i = 0; i < cbox.length; i++) {
-            //console.log(cbox[i])
-            cbox[i].classList.add('none-class')
-        };
-    },
-    onUnchoose: () => {
-        const cbox = document.querySelectorAll(".player-card-modal");
-
-        for (let i = 0; i < cbox.length; i++) {
-            //console.log(cbox[i])
-            //cbox[i].style.remove(opacity)
-            cbox[i].classList.remove('none-class')
-        };
-    },
-    group: {
-        name: "players-list"
-    },
-})
+updateAllSectionPlayers()
 
 // Para mover las secciones.
-/* Sortable.create(main, {
+Sortable.create(main, {
     animation: 300,
     chosenClass: "chosen",
     ghostClass: "ghost",
     dragClass: "drag",
+    handle: ".fas",
+    filter: ".page-title-container",
     group: {
         name: "main-list"
     },
-    store: {
+/*     store: {
         // Para guardar el orden de la lista en memoria. 
         set: (sortable) => {
             const orderOfTheList = sortable.toArray()
@@ -595,5 +717,5 @@ Sortable.create(culos[0], {
             console.log(orderObtained)
             return orderObtained ? orderObtained.split('|') : []
         }
-    }
-}) */
+    } */
+})
